@@ -1,11 +1,6 @@
 {
-   "commerceSuiteVersion": "2005.0",
-    "extensionPacks" : [
-	{
-		"name" : "hybris-commerce-integrations",
-		"version" : "2005.0"
-	}
-	],
+   "commerceSuiteVersion": "2005",
+
    "extensions":[
        "adaptivesearchbackoffice" ,
        "adaptivesearchsolr",
@@ -171,10 +166,6 @@
                   {
                   "name": "personalizationsearchsmartedit",
                   "contextPath": "/personalizationsearchsmartedit"
-                  },
-				  {
-                  "name": "odata2webservices",
-                  "contextPath": "/odata2webservices"
                   }
 				  
                  ]
