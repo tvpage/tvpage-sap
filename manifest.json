@@ -160,7 +160,7 @@
                 },
                 {
                  "name": "yacceleratorstorefront",
-                 "contextPath": "/b2c"
+                 "contextPath": ""
                  },
                 {
                  "name": "smartedit",
@@ -242,10 +242,6 @@
                     "key":"storefrontContextRoot",
                     "value":"/b2c"
                 },
-				{
-				   "key":"b2bStorefrontContextRoot",
-                    "value":""
-				},
 				
 				{
 				   "key"  :"yacceleratorstorefront.webroot",
@@ -259,7 +255,7 @@
                 },
                 {
                     "name": "yacceleratorstorefront",
-                    "contextPath": "/b2c"
+                    "contextPath": ""
                 },
 				
                 {
