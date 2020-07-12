@@ -65,54 +65,12 @@
 	   "assistedservicestorefront",
 	   "smarteditaddon",
 	   "multicountrysampledataaddon",
+	   "modeltacceleratorservices",
 	   "acceleratorwebservicesaddon"
 	   
    ],
    "storefrontAddons":[
 	 
-      {
-         "addon":"commerceorgsamplesaddon",
-         "storefront":"yacceleratorstorefront",
-         "template":"yacceleratorstorefront"
-      },
-      {
-         "addon":"customerticketingaddon",
-         "storefront":"yacceleratorstorefront",
-         "template":"yacceleratorstorefront"
-      },
-      {
-         "addon":"adaptivesearchsamplesaddon",
-         "storefront":"yacceleratorstorefront",
-         "template":"yacceleratorstorefront"
-      },
-      {
-         "addon":"pcmbackofficesamplesaddon",
-         "storefront":"yacceleratorstorefront",
-         "template":"yacceleratorstorefront"
-      },
-      {
-         "addon":"ordermanagementaddon",
-         "storefront":"yacceleratorstorefront",
-         "template":"yacceleratorstorefront"
-      },
-      {
-         "addon":"orderselfserviceaddon",
-         "storefront":"yacceleratorstorefront",
-         "template":"yacceleratorstorefront"
-      },
-     
-      {
-         "addon":"assistedservicestorefront",
-         "storefront":"yacceleratorstorefront",
-         "template":"yacceleratorstorefront"
-      },
-      
-	  {
-         "addon":"smarteditaddon",
-         "storefront":"yacceleratorstorefront",
-         "template":"yacceleratorstorefront"
-      }
-	  
 	  
    ],
   "aspects": [
@@ -130,7 +88,11 @@
                 {
                     "name": "backoffice",
                     "contextPath": "/backoffice"
-                }
+                },
+				 {
+                    "name":"odata2webservices",
+                    "contextPath":"/odata2webservices"
+                 }
             ]
 	},
 	{
@@ -240,13 +202,10 @@
                 },
 			    {
                     "key":"storefrontContextRoot",
-                    "value":"/b2c"
-                },
+                    "value":""
+                }
 				
-				{
-				   "key"  :"yacceleratorstorefront.webroot",
-				   "value":"/b2c" 
-				}
+				
 			],
             "webapps": [
                 {
@@ -261,6 +220,10 @@
                 {
                     "name": "acceleratorservices",
                     "contextPath": "/acceleratorservices"
+                },
+			    {
+                   "name":"adaptivesearchwebservices",
+                   "contextPath":"/adaptivesearchwebservices"
                 }
 				
             ]
