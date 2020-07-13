@@ -2,3 +2,58 @@
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
 # -----------------------------------------------------------------------
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+                               ; TvpageProduct; INBOUND
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code); root[default = false]; itemTypeMatch(code)
+                                   ; TvpageProduct	; PriceRow             	; PriceRow             	; 	; ALL_SUB_AND_SUPER_TYPES	;
+                                   ; TvpageProduct	; Currency             	; Currency             	; 	; ALL_SUB_AND_SUPER_TYPES	;
+                                   ; TvpageProduct	; Warehouse            	; Warehouse            	; 	; ALL_SUB_AND_SUPER_TYPES	;
+                                   ; TvpageProduct	; Catalog              	; Catalog              	; 	; ALL_SUB_AND_SUPER_TYPES	;
+                                   ; TvpageProduct	; Product              	; Product              	; true	; ALL_SUB_AND_SUPER_TYPES	;
+                                   ; TvpageProduct	; ArticleApprovalStatus	; ArticleApprovalStatus	; 	; ALL_SUBTYPES           	;
+                                   ; TvpageProduct	; StockLevel           	; StockLevel           	; 	; ALL_SUB_AND_SUPER_TYPES	;
+                                   ; TvpageProduct	; Category             	; Category             	; 	; ALL_SUB_AND_SUPER_TYPES	;
+                                   ; TvpageProduct	; CatalogVersion       	; CatalogVersion       	; 	; ALL_SUB_AND_SUPER_TYPES	;
+                                   ; TvpageProduct	; Media                	; Media                	; 	; ALL_SUB_AND_SUPER_TYPES	;
+                                   ; TvpageProduct	; InStockStatus        	; InStockStatus        	; 	; ALL_SUBTYPES           	;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false]
+                                            ; TvpageProduct:PriceRow             	; productId       	; PriceRow:productId        	;                                      	; true	;
+                                            ; TvpageProduct:PriceRow             	; currency        	; PriceRow:currency         	; TvpageProduct:Currency             	; true	;
+                                            ; TvpageProduct:PriceRow             	; price           	; PriceRow:price            	;                                      	; 	;
+                                            ; TvpageProduct:Currency             	; isocode         	; Currency:isocode          	;                                      	; true	;
+                                            ; TvpageProduct:Warehouse            	; code            	; Warehouse:code            	;                                      	; true	;
+                                            ; TvpageProduct:Catalog              	; id              	; Catalog:id                	;                                      	; true	;
+                                            ; TvpageProduct:Product              	; name            	; Product:name              	;                                      	; 	;
+                                            ; TvpageProduct:Product              	; ean             	; Product:ean               	;                                      	; 	;
+                                            ; TvpageProduct:Product              	; code            	; Product:code              	;                                      	; true	;
+                                            ; TvpageProduct:Product              	; supercategories 	; Product:supercategories   	; TvpageProduct:Category             	; 	;
+                                            ; TvpageProduct:Product              	; stockLevels     	; Product:stockLevels       	; TvpageProduct:StockLevel           	; 	;
+                                            ; TvpageProduct:Product              	; onlineDate      	; Product:onlineDate        	;                                      	; 	;
+                                            ; TvpageProduct:Product              	; catalogVersion  	; Product:catalogVersion    	; TvpageProduct:CatalogVersion       	; true	;
+                                            ; TvpageProduct:Product              	; europe1Prices   	; Product:europe1Prices     	; TvpageProduct:PriceRow             	; 	;
+                                            ; TvpageProduct:Product              	; manufacturerName	; Product:manufacturerName  	;                                      	; 	;
+                                            ; TvpageProduct:Product              	; approvalStatus  	; Product:approvalStatus    	; TvpageProduct:ArticleApprovalStatus	; 	;
+                                            ; TvpageProduct:Product              	; offlineDate     	; Product:offlineDate       	;                                      	; 	;
+                                            ; TvpageProduct:Product              	; manufacturerAID 	; Product:manufacturerAID   	;                                      	; 	;
+                                            ; TvpageProduct:Product              	; summary         	; Product:summary           	;                                      	; 	;
+                                            ; TvpageProduct:Product              	; picture         	; Product:picture           	; TvpageProduct:Media                	; 	;
+                                            ; TvpageProduct:Product              	; description     	; Product:description       	;                                      	; 	;
+                                            ; TvpageProduct:ArticleApprovalStatus	; code            	; ArticleApprovalStatus:code	;                                      	; true	;
+                                            ; TvpageProduct:StockLevel           	; productCode     	; StockLevel:productCode    	;                                      	; true	;
+                                            ; TvpageProduct:StockLevel           	; inStockStatus   	; StockLevel:inStockStatus  	; TvpageProduct:InStockStatus        	; 	;
+                                            ; TvpageProduct:StockLevel           	; reserved        	; StockLevel:reserved       	;                                      	; 	;
+                                            ; TvpageProduct:StockLevel           	; available       	; StockLevel:available      	;                                      	; 	;
+                                            ; TvpageProduct:StockLevel           	; warehouse       	; StockLevel:warehouse      	; TvpageProduct:Warehouse            	; true	;
+                                            ; TvpageProduct:Category             	; code            	; Category:code             	;                                      	; true	;
+                                            ; TvpageProduct:Category             	; catalogVersion  	; Category:catalogVersion   	; TvpageProduct:CatalogVersion       	; true	;
+                                            ; TvpageProduct:Category             	; name            	; Category:name             	;                                      	; 	;
+                                            ; TvpageProduct:Category             	; supercategories 	; Category:supercategories  	; TvpageProduct:Category             	; 	;
+                                            ; TvpageProduct:CatalogVersion       	; catalog         	; CatalogVersion:catalog    	; TvpageProduct:Catalog              	; true	;
+                                            ; TvpageProduct:CatalogVersion       	; version         	; CatalogVersion:version    	;                                      	; true	;
+                                            ; TvpageProduct:CatalogVersion       	; active          	; CatalogVersion:active     	;                                      	; 	;
+                                            ; TvpageProduct:Media                	; downloadURL     	; Media:downloadURL         	;                                      	; 	;
+                                            ; TvpageProduct:Media                	; code            	; Media:code                	;                                      	; true	;
+                                            ; TvpageProduct:Media                	; catalogVersion  	; Media:catalogVersion      	; TvpageProduct:CatalogVersion       	; true	;
+                                            ; TvpageProduct:InStockStatus        	; code            	; InStockStatus:code        	;                                      	; true	;
