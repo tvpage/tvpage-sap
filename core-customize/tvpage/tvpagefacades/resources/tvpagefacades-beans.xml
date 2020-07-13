@@ -67,4 +67,7 @@
 		<property name="key" type="String"/>
 		<property name="value" type="String"/>
 	</bean>
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="tvpageVideoJson" type="String"/>
+	</bean>
 </beans>

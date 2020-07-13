@@ -74,5 +74,14 @@
 <bean id="defaultTvPageStorefrontFacadeImpl" class="com.tvpagefacades.impl.TvPageStorefrontFacadeImpl">
 	<property name="tvpageStoreFrontService" ref="tvpageStoreFrontService"></property>
 </bean>
-			
+
+
+	<bean id="tvpageProductPopulator" class="com.tvpagefacades.populators.TvpageProductPopulator" >
+	</bean>
+
+	<!-- Add the TvpageProductPopulator to the productConverter -->
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="productConverter"/>
+		<property name="add" ref="tvpageProductPopulator"/>
+	</bean>
 </beans>

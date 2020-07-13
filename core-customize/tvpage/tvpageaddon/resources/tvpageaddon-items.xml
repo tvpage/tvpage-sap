@@ -36,19 +36,5 @@
 			</attributes>
 		</itemtype>
 -->
-		<itemtype generate="true"
-				  code="TvpageProduct"
-				  jaloclass="com.hybris.tvpage.jalo.TvpageProduct"
-				  extends="Product"
-				  autocreate="true"
-		>
-		<attributes>
-		<attribute qualifier="myExampleInitialStringField" type="java.lang.String">
-			<description>My Example Initial String Value</description>
-			<modifiers initial="true"/>
-			<persistence type="property"/>
-		</attribute>
-		</attributes>>
-		</itemtype>
 	</itemtypes>
 </items>

@@ -51,5 +51,21 @@
 		</typegroup>
 
 
+
+		<typegroup name="Product ">
+			<itemtype code="Product"
+					  extends="LocalizableItem"
+					  autocreate="false"
+					  generate="false">
+			<attributes>
+				<attribute qualifier="tvpageVideoJson" type="java.lang.String">
+					<description>Product Json</description>
+					<modifiers initial="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>>
+		</itemtype>
+		</typegroup>
+
 	</itemtypes>
 </items>
