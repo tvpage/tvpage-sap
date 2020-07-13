@@ -61,11 +61,18 @@
 	   "smarteditaddon",
 	   "multicountrysampledataaddon",
 	   "modeltacceleratorservices",
-	   "acceleratorwebservicesaddon"
+	   "acceleratorwebservicesaddon",
+	   "tvpageaddon",
+	   "tvpagefacades",
+	   "tvpageservices"
 	   
    ],
    "storefrontAddons":[
-	 
+	  {
+         "addon":"tvpageaddon",
+         "storefront":"yacceleratorstorefront",
+         "template":"yacceleratorstorefront"
+      }
 	  
    ],
   "aspects": [
