@@ -1,0 +1,2 @@
+tvpagevideocmscomponent.jsp
+${product.tvpageVideoJson}
