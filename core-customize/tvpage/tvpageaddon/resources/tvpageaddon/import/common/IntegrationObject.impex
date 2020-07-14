@@ -32,6 +32,7 @@ INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationO
                                             ; TvpageProduct:Product              	; manufacturerName	; Product:manufacturerName  	;                                      	; 	;
                                             ; TvpageProduct:Product              	; approvalStatus  	; Product:approvalStatus    	; TvpageProduct:ArticleApprovalStatus	; 	;
                                             ; TvpageProduct:Product              	; offlineDate     	; Product:offlineDate       	;                                      	; 	;
+                                            ; TvpageProduct:Product              	; tvpageVideoJson 	; Product:tvpageVideoJson   	;                                    	; 	;
                                             ; TvpageProduct:Product              	; manufacturerAID 	; Product:manufacturerAID   	;                                      	; 	;
                                             ; TvpageProduct:Product              	; summary         	; Product:summary           	;                                      	; 	;
                                             ; TvpageProduct:Product              	; picture         	; Product:picture           	; TvpageProduct:Media                	; 	;
