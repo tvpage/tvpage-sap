@@ -2,7 +2,7 @@
 .idea/
 *.iml
 *.iws
-./externalToolBuilders
+.externalToolBuilders/
 # Mac
 .DS_Store
 
