@@ -1,0 +1,50 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+
+INSERT_UPDATE ComponentTypeGroups2ComponentType;source(code)[unique=true];target(code)[unique=true]
+                                               ;wide;TvPageStoreFrontCMSComponent
+                                               ;wide;TvPageVideoCMSComponent
+                                               ;wide;TvPageConversionTrackerComponent
+                                               ;narrow;TvPageVideoCMSComponent
+                                               ;narrow;TvPageConversionTrackerComponent
+                                               ;narrow;TvPageStoreFrontCMSComponent
+
+###TVPageStoreFrontPage
+
+INSERT_UPDATE TvPageStoreFrontCMSComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+                                          ;                       ;electronicsTvPageSFComponent;Electronics TV page storeFront component;electronicsTvPageSFComponent
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true]         ;name                        ;masterTemplate(uid,$contentCV)     ;label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];
+                         ;                  ;tvpagestorefrontPage          ;TvPageStorefront Page       ;LandingPage2Template               ;     ;                   ;                            ;                 ;
+
+# ContentSlot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+                          ;;Section2A-tvpagestorefrontPage; Section2A slot for TVPage Storefront Page;true;electronicsTvPageSFComponent
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='tvpagestorefrontPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section2A-tvpagestorefrontPage;Section2A;;Section2A-tvpagestorefrontPage
+
+##Adding tvPageVideo Component in Product Details Page
+
+INSERT_UPDATE TvPageVideoCMSComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+                                     ;                       ;electronicsTvPageVideoCMSComponent;Electronics TV page video component;electronicsTvPageVideoCMSComponent
+
+# ContentSlot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+                         ;;Section3-productdetails; Section3 product details page;true;electronicsTvPageVideoCMSComponent
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='productDetails'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section3-productdetails;Section3;;Section3-productdetails
+
+## Adding tvpage conversion tracking component to Order confirmation page
+
+INSERT_UPDATE TvPageConversionTrackerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+                                              ;                       ;electronicsTvPConvTrackerComp;Electronics TV page conversion tracker component;electronicsTvPConvTrackerComp
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true] ;cmsComponents(&componentRef)[mode='append'];;;
+                         ;                       ;SideContent-orderConfirmation;electronicsTvPConvTrackerComp ;;;
