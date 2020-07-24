@@ -6,16 +6,10 @@ package com.tvpageservices.constants;
 /**
  * Global class for all Tvpageservices constants. You can add global constants for your extension into this class.
  */
-public final class TvpageservicesConstants extends GeneratedTvpageservicesConstants
-{
-	public static final String EXTENSIONNAME = "tvpageservices";
+public final class TvpageservicesConstants extends GeneratedTvpageservicesConstants {
+    public static final String EXTENSIONNAME = "tvpageservices";
 
-	private TvpageservicesConstants()
-	{
-		//empty to avoid instantiating this constant class
-	}
-
-	// implement here constants used by this extension
-
-	public static final String PLATFORM_LOGO_CODE = "tvpageservicesPlatformLogo";
+    private TvpageservicesConstants() {
+        //empty to avoid instantiating this constant class
+    }
 }

@@ -8,10 +8,9 @@ package com.hybris.tvpage.constants;
  */
 public final class TvpageaddonWebConstants // NOSONAR
 {
-	private TvpageaddonWebConstants()
-	{
-		//empty to avoid instantiating this constant class
-	}
+    private TvpageaddonWebConstants() {
+        //empty to avoid instantiating this constant class
+    }
 
-	// implement here constants used by this extension
+    // implement here constants used by this extension
 }

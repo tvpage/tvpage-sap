@@ -58,25 +58,26 @@
 		 <macrodef name="tvpagespartacussampledataaddon_before_dist_copy"/>
 		 <macrodef name="tvpagespartacussampledataaddon_after_dist_copy"/>
  
---><project name="tvpagespartacussampledataaddon_buildcallbacks">
-    	
-	
+-->
+<project name="tvpagespartacussampledataaddon_buildcallbacks">
+
+
     <!-- 
 	    Called whenever 'ant ear' is used. this callback can be used to modify the content of the ear file
 	
 	     ${ear.path}: 			path to ear
 	 -->
-    	
+
     <macrodef name="tvpagespartacussampledataaddon_before_ear">
-        		
+
         <sequential>
-            			
+
             <!-- you can do anything before the EAR file is being packed -->
-            			
-		
+
+
         </sequential>
-        	
+
     </macrodef>
-    		
+
 
 </project>

@@ -3,8 +3,8 @@
  */
 package com.tvpage.occ.controllers;
 
-import com.tvpagefacades.TvPageStoreFrontFacade;
-import com.tvpagefacades.data.TvPageContentData;
+import com.tvpagefacades.TvpageStoreFrontFacade;
+import com.tvpagefacades.data.TvpageMetaData;
 import de.hybris.platform.commerceservices.request.mapping.annotation.ApiVersion;
 import de.hybris.platform.webservicescommons.cache.CacheControl;
 import de.hybris.platform.webservicescommons.cache.CacheControlDirective;
@@ -30,26 +30,26 @@ import javax.annotation.Resource;
 public class TvpageStorefrontController {
     private static final Logger LOGGER = LoggerFactory.getLogger(TvpageStorefrontController.class);
 
-    @Resource(name = "tvPageStorefrontFacade")
-    private TvPageStoreFrontFacade tvpageStorefrontFacade;
+    @Resource(name = "tvpageStorefrontFacade")
+    private TvpageStoreFrontFacade tvpageStorefrontFacade;
 
     @GetMapping(value = "/storefront/html")
     @ResponseBody
-    @ApiOperation(value = "Get TVPage Storefront HTML", notes = "Given a url, return TVPage content data containing HTML.", nickname = "getTvpageStorefrontHtml")
+    @ApiOperation(value = "Get TVPage Storefront HTML", notes = "Given a url, return TVPage HTML.", nickname = "getTvpageStorefrontHtml")
     @ApiBaseSiteIdParam
-    public TvPageContentData getTvpageStorefrontHtml(@ApiParam(value = "TVPage URL") @RequestParam(required = false) final String url) {
-        return getTvpageStorefrontFacade().getTvPageStorefrontHtml(url);
+    public String getTvpageStorefrontHtml(@ApiParam(value = "TVPage URL") @RequestParam(required = false) final String url) {
+        return getTvpageStorefrontFacade().getTvpageStorefrontHtml(url);
     }
 
     @GetMapping(value = "/storefront/meta-tags")
     @ResponseBody
     @ApiOperation(value = "Get TVPage Storefront Meta Tags", notes = "Given a url, return TVPage content data containing meta tags.", nickname = "getTvpageStorefrontMetaTags")
     @ApiBaseSiteIdParam
-    public TvPageContentData getTvpageStorefrontMetaTags(@ApiParam(value = "TVPage URL") @RequestParam(required = false) final String url) {
-        return getTvpageStorefrontFacade().getTvPageStorefrontMetaTags(url);
+    public TvpageMetaData getTvpageStorefrontMetaTags(@ApiParam(value = "TVPage URL") @RequestParam(required = false) final String url) {
+        return getTvpageStorefrontFacade().getTvpageStorefrontMetaTags(url);
     }
 
-    protected TvPageStoreFrontFacade getTvpageStorefrontFacade() {
+    protected TvpageStoreFrontFacade getTvpageStorefrontFacade() {
         return tvpageStorefrontFacade;
     }
 }

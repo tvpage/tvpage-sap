@@ -6,66 +6,39 @@
 	ATTENTION: This is just an example file. You have to edit it according to your needs.
 -->
 
-<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-			xsi:noNamespaceSchemaLocation="items.xsd">
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
 
-	<itemtypes>
-<!--
-		<itemtype generate="true"
-		   code="MyProduct"
-		   jaloclass="com.tvpageservices.jalo.MyProduct"
-		   extends="Product"
-		   autocreate="true"
-	   >
-			<attributes>
-				<attribute qualifier="myExampleInitialStringField" type="java.lang.String">
-					<description>My Example Initial String Value</description>
-					<modifiers initial="true"/>
-					<persistence type="property"/>
-				</attribute>
+    <itemtypes>
+        <typegroup name="CMS Components">
+            <itemtype code="TvpageStoreFrontCmsComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
+                      jaloclass="com.tvpageservices.jalo.cmscomponents.TvpageStoreFrontCmsComponent">
+            </itemtype>
 
-				<attribute qualifier="myExampleBooleanField" type="java.lang.Boolean">
-					<description>Example Initial Boolean Field</description>
-               <persistence type="property"/>
-				</attribute>
+            <itemtype code="TvpageVideoCmsComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
+                      jaloclass="com.tvpageservices.jalo.cmscomponents.TvpageVideoCmsComponent">
+            </itemtype>
 
-				<attribute qualifier="media" type="Media">
-					<persistence type="property"/>
-				</attribute>
+            <itemtype code="TvpageConversionTrackerComponent" extends="SimpleCMSComponent" autocreate="true"
+                      generate="true"
+                      jaloclass="com.tvpageservices.jalo.cmscomponents.TvpageConversionTrackerComponent">
+            </itemtype>
+        </typegroup>
 
-			</attributes>
-		</itemtype>
--->
-		<typegroup name="CMS Components">
-			<itemtype code="TvPageStoreFrontCMSComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
-					  jaloclass="com.tvpageservices.jalo.cmscomponents.TvPageStoreFrontCMSComponent" >
-			</itemtype>
-
-			<itemtype code="TvPageVideoCMSComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
-					  jaloclass="com.tvpageservices.jalo.cmscomponents.TvPageVideoCMSComponent">
-			</itemtype>
-
-			<itemtype code="TvPageConversionTrackerComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
-					  jaloclass="com.tvpageservices.jalo.cmscomponents.TvPageConversionTrackerComponent">
-			</itemtype>
-		</typegroup>
-
-
-
-		<typegroup name="Product ">
-			<itemtype code="Product"
-					  extends="LocalizableItem"
-					  autocreate="false"
-					  generate="false">
-			<attributes>
-				<attribute qualifier="tvpageVideoJson" type="java.lang.String">
-					<description>Product Json</description>
-					<modifiers initial="true"/>
-					<persistence type="property"/>
-				</attribute>
-			</attributes>>
-		</itemtype>
-		</typegroup>
-
-	</itemtypes>
+        <typegroup name="Product ">
+            <itemtype code="Product"
+                      extends="LocalizableItem"
+                      autocreate="false"
+                      generate="false">
+                <attributes>
+                    <attribute qualifier="tvpageVideoJson" type="java.lang.String">
+                        <description>Product Json</description>
+                        <modifiers initial="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+                >
+            </itemtype>
+        </typegroup>
+    </itemtypes>
 </items>
