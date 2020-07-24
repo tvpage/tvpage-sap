@@ -31,7 +31,6 @@ core-customize/**/hmc.xsd
 core-customize/**/items.xsd
 core-customize/**/beans.xsd
 core-customize/**/velocity.log
-addons/
 addonsrc/
 META-INF
 README

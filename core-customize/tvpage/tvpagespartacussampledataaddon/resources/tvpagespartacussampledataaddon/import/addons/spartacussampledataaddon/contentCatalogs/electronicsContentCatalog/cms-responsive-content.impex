@@ -1,0 +1,52 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# The files in this addon are licensed under the Apache Software License, v. 2 
+# except as noted otherwise in the LICENSE file.
+# -----------------------------------------------------------------------
+#
+$contentCatalog=electronics-spaContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$addonExtensionName=tvpagespartacussampledataaddon
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;TvpageStorefrontPageTemplate;TVPage Storefront Page Template;;ContentPage
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;tvpageStorefront;TVPage Storefront Page;TvpageStorefrontPageTemplate;/storefront
+
+INSERT_UPDATE TvpageStoreFrontCmsComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;tvpageStoreFrontCmsComponent;TVPage StoreFront Cms Component;tvpageStoreFrontCmsComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='TvpageStorefrontPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Section1;;;wide
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+;SiteContext;;CMSSiteContextComponent;
+;SiteLinks;;CMSLinkComponent;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section1Slot-TvpageStorefrontPage;Section1 Slot for TVPage Storefront page;true;tvpageStoreFrontCmsComponent;;;
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='TvpageStorefrontPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-TvpageStorefrontPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-TvpageStorefrontPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;NavigationBar-TvpageStorefrontPage;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-TvpageStorefrontPage;MiniCart;;MiniCartSlot;true
+;;Footer-TvpageStorefrontPage;Footer;;FooterSlot;true
+;;HeaderLinks-TvpageStorefrontPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-TvpageStorefrontPage;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-TvpageStorefrontPage;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-TvpageStorefrontPage;BottomHeaderSlot;;BottomHeaderSlot;true
+;;PlaceholderContentSlot-TvpageStorefrontPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+;;SiteContextSlot-TvpageStorefrontPage;SiteContext;;SiteContextSlot;true
+;;SiteLinksSlot-TvpageStorefrontPage;SiteLinks;;SiteLinksSlot;true
+;;Section1Slot-TvpageStorefrontPage;Section1;;Section1Slot-TvpageStorefrontPage;true
