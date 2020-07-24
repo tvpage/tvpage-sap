@@ -11,11 +11,9 @@ import de.hybris.platform.cms2.model.contents.components.SimpleCMSComponentModel
 /**
  * b2bacceleratoraddon renderer for ProductAddToCartComponents
  */
-public class TvPageComponentRenderer<C extends SimpleCMSComponentModel> extends DefaultAddOnCMSComponentRenderer<C>
-{
-	@Override
-	protected String getAddonUiExtensionName(final C component)
-	{
-		return TvpageaddonConstants.EXTENSIONNAME;
-	}
+public class TvpageComponentRenderer<C extends SimpleCMSComponentModel> extends DefaultAddOnCMSComponentRenderer<C> {
+    @Override
+    protected String getAddonUiExtensionName(final C component) {
+        return TvpageaddonConstants.EXTENSIONNAME;
+    }
 }

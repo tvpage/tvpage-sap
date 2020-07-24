@@ -11,9 +11,4 @@ tvpagespartacussampledataaddon.application-context=tvpagespartacussampledataaddo
 
 yacceleratorstorefront.additionalWebSpringConfigs.tvpagespartacussampledataaddon=classpath:/tvpagespartacussampledataaddon/web/spring/tvpagespartacussampledataaddon-web-spring.xml
 
-
-
-tvpagespartacussampledataaddon.javascript.paths.responsive=/responsive/common/js/tvpagespartacussampledataaddon.js
-tvpagespartacussampledataaddon.css.paths.responsive=/responsive/common/css/tvpagespartacussampledataaddon.css
-
 tvpagespartacussampledataaddon.awareof.addons=spartacussampledataaddon

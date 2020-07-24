@@ -78,22 +78,23 @@
  	  	  	 <exclude name="lib/exclude-me.jar" />
  	  	 </patternset>
  
---><project name="tvpageservices_buildcallbacks">
-    	
+-->
+<project name="tvpageservices_buildcallbacks">
+
     <!-- 
 	    Called whenever 'ant ear' is used. this callback can be used to modify the content of the ear file
 	
 	     ${ear.path}: 			path to ear
 	 -->
-    	
+
     <macrodef name="tvpageservices_before_ear">
-        		
+
         <sequential>
-            			
+
             <!-- you can do anything before the EAR file is being packed -->
-            		
+
         </sequential>
-        	
+
     </macrodef>
-    
+
 </project>

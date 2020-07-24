@@ -1,11 +1,11 @@
 package com.tvpagefacades;
 
-import com.tvpagefacades.data.TvPageContentData;
+import com.tvpagefacades.data.TvpageMetaData;
 
 
-public interface TvPageStoreFrontFacade {
+public interface TvpageStoreFrontFacade {
 
-   public TvPageContentData getTvPageStorefrontHtml(String uri);
+    String getTvpageStorefrontHtml(String uri);
 
-   public TvPageContentData getTvPageStorefrontMetaTags(String uri);
+    TvpageMetaData getTvpageStorefrontMetaTags(String uri);
 }

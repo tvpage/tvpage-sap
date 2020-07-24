@@ -1,41 +1,34 @@
 package com.tvpagefacades.impl;
 
 import com.google.gson.Gson;
-import com.tvpagefacades.TvPageStoreFrontFacade;
-import com.tvpagefacades.data.TvPageContentData;
-import com.tvpageservices.TvPageStorefrontService;
+import com.tvpagefacades.TvpageStoreFrontFacade;
+import com.tvpagefacades.data.TvpageMetaData;
+import com.tvpageservices.TvpageStorefrontService;
 
 
-public class TvPageStorefrontFacadeImpl  implements TvPageStoreFrontFacade {
+public class TvpageStorefrontFacadeImpl implements TvpageStoreFrontFacade {
 
-   private TvPageStorefrontService tvpageStoreFrontService;
+    private TvpageStorefrontService tvpageStoreFrontService;
 
     @Override
-    public TvPageContentData getTvPageStorefrontHtml(String uri)
-    {
-        String tvPageResponseJson=tvpageStoreFrontService.getTvPageStorefrontHtml(uri);
-        // Gson gson = new Gson();
-        Gson gson =new Gson();
-        TvPageContentData pageData= gson.fromJson(tvPageResponseJson, TvPageContentData.class);
-        System.out.println("Converted Response "+ pageData.getHtml());
-        return pageData;
-    }
-    @Override
-    public TvPageContentData getTvPageStorefrontMetaTags(String uri)
-    {
-        String tvPageResponseJson=tvpageStoreFrontService.getTvPageStorefrontMetaTags(uri);
-        // Gson gson = new Gson();
-        Gson gson =new Gson();
-        TvPageContentData pageData= gson.fromJson(tvPageResponseJson, TvPageContentData.class);
-        System.out.println("Converted Response "+ pageData.getMetatags().size());
-        return pageData;
+    public String getTvpageStorefrontHtml(String uri) {
+        return tvpageStoreFrontService.getTvpageStorefrontHtml(uri);
     }
 
-    public TvPageStorefrontService getTvpageStoreFrontService() {
+    @Override
+    public TvpageMetaData getTvpageStorefrontMetaTags(String uri) {
+        String tvPageResponseJson = tvpageStoreFrontService.getTvpageStorefrontMetaTags(uri);
+        // Gson gson = new Gson();
+        Gson gson = new Gson();
+        TvpageMetaData tagData = gson.fromJson(tvPageResponseJson, TvpageMetaData.class);
+        return tagData;
+    }
+
+    protected TvpageStorefrontService getTvpageStoreFrontService() {
         return tvpageStoreFrontService;
     }
 
-    public void setTvpageStoreFrontService(TvPageStorefrontService tvpageStoreFrontService) {
+    public void setTvpageStoreFrontService(TvpageStorefrontService tvpageStoreFrontService) {
         this.tvpageStoreFrontService = tvpageStoreFrontService;
     }
 }

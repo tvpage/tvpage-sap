@@ -1,8 +1,8 @@
 package com.tvpageservices;
 
-public interface TvPageStorefrontService {
+public interface TvpageStorefrontService {
 
-    String getTvPageStorefrontHtml(String uri);
+    String getTvpageStorefrontHtml(String uri);
 
-    String getTvPageStorefrontMetaTags(String uri);
+    String getTvpageStorefrontMetaTags(String uri);
 }

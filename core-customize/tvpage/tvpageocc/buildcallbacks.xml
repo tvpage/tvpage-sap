@@ -58,22 +58,23 @@
 		 <macrodef name="tvpageocc_before_dist_copy"/>
 		 <macrodef name="tvpageocc_after_dist_copy"/>
 
---><project name="tvpageocc_buildcallbacks">
-    	
+-->
+<project name="tvpageocc_buildcallbacks">
+
     <!--
 	    Called whenever 'ant ear' is used. this callback can be used to modify the content of the ear file
 
 	     ${ear.path}: 			path to ear
 	 -->
-    	
+
     <macrodef name="tvpageocc_before_ear">
-        		
+
         <sequential>
-            			
+
             <!-- you can do anything before the EAR file is being packed -->
-            		
+
         </sequential>
-        	
+
     </macrodef>
-    
+
 </project>
