@@ -1,0 +1,1 @@
+export * from './tvpage-spartacus.module';
