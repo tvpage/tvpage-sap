@@ -63,50 +63,24 @@ export class TvpageService {
             this.ngTitle.setTitle(tag.value || '');
           } else if (tag.tag === 'meta') {
             let metaDefinition: MetaDefinition = {};
-            for (let tagAttribute of tag.attributes) {
-              metaDefinition[tagAttribute.attribute] = tagAttribute.value;
-
-              // const tagAttributeName = tagAttribute.attribute;
-              // const tagAttributeValue = tagAttribute.value;
-              // switch (tagAttributeName) {
-              //   case 'charset':
-              //     metaDefinition.charset = tagAttributeValue;
-              //     break;
-              //   case 'content':
-              //     metaDefinition.content = tagAttributeValue;
-              //     break;
-              //   case 'http-equiv':
-              //     metaDefinition.httpEquiv = tagAttributeValue;
-              //     break;
-              //   case 'id':
-              //     metaDefinition.id = tagAttributeValue;
-              //     break;
-              //   case 'itemprop':
-              //     metaDefinition.itemprop = tagAttributeValue;
-              //     break;
-              //   case 'name':
-              //     metaDefinition.name = tagAttributeValue;
-              //     break;
-              //   case 'property':
-              //     metaDefinition.property = tagAttributeValue;
-              //     break;
-              //   case 'scheme':
-              //     metaDefinition.scheme = tagAttributeValue;
-              //     break;
-              //   case 'url':
-              //     metaDefinition.url = tagAttributeValue;
-              //     break;
-              //   default:
-              //     metaDefinition[tagAttributeName] = tagAttributeValue;
-              //     break;
-              // }
+            if (tag.attributes) {
+              for (let tagAttribute of tag.attributes) {
+                metaDefinition[tagAttribute.attribute] = tagAttribute.value;
+              }
             }
             this.ngMeta.updateTag(metaDefinition);
           } else {
+            // for other tags in <head> (e.g., <style>, <base>, <link>, <script>, <noscript>)
             let tagElement: HTMLElement = this.document.createElement(tag.tag);
-            for (let tagAttribute of tag.attributes) {
-              tagElement.setAttribute(tagAttribute.attribute, tagAttribute.value);
+            if (tag.attributes) {
+              for (let tagAttribute of tag.attributes) {
+                tagElement.setAttribute(tagAttribute.attribute, tagAttribute.value);
+              }
             }
+            if (tag.value) {
+              tagElement.appendChild(this.document.createTextNode(tag.value));
+            }
+
             this.document.head.appendChild(tagElement);
           }
         }
