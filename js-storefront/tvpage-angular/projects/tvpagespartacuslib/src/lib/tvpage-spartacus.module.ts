@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PageLayoutComponent, CmsPageGuard, LayoutConfig } from '@spartacus/storefront';
 import { TvpageStorefrontModule } from '../cms-component';
-import { provideDefaultConfig } from '@spartacus/core';
+import { provideDefaultConfig, RoutingConfig } from '@spartacus/core';
 
 @NgModule({
   declarations: [],
@@ -12,14 +12,19 @@ import { provideDefaultConfig } from '@spartacus/core';
     TvpageStorefrontModule,
     RouterModule.forChild([
       {
-        path: 'storefront',
+        data: {
+          cxRoute: 'tvpageStorefront',
+          pageLabel: '/storefront'
+        },
+        path: null,
         children: [{
+          data: {
+            pageLabel: '/storefront'
+          },
           path: '**',
-          data: { pageLabel: '/storefront' },
           component: PageLayoutComponent,
           canActivate: [CmsPageGuard]
         }],
-        data: { pageLabel: '/storefront' },
         component: PageLayoutComponent,
         canActivate: [CmsPageGuard]
       }
@@ -32,6 +37,15 @@ import { provideDefaultConfig } from '@spartacus/core';
           slots: ['Section1'],
         },
       }
+    }),
+    provideDefaultConfig(<RoutingConfig>{
+      routing: {
+        routes: {
+          tvpageStorefront: {
+            paths: ['storefront']
+          }
+        },
+      },
     }),
   ],
 })
