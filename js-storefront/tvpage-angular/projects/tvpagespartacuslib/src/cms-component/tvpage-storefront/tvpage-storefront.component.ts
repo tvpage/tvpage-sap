@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CmsComponentData } from '@spartacus/storefront';
 import { TvpageStoreFrontCmsComponent } from '../../model/TvpageStorefrontCmsComponent';
-import { RoutingService } from '@spartacus/core';
+import { RoutingService, RoutingConfigService } from '@spartacus/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TvpageService } from '../../service/tvpage.service';
@@ -20,6 +20,7 @@ export class TvpageStorefrontComponent implements OnInit {
     public component: CmsComponentData<TvpageStoreFrontCmsComponent>,
     protected tvpageService: TvpageService,
     protected routingService: RoutingService,
+    protected routingConfigService: RoutingConfigService,
     protected router: Router
   ) { }
 
@@ -27,11 +28,19 @@ export class TvpageStorefrontComponent implements OnInit {
     this.routingService
       .getRouterState()
       .subscribe((routingData) => {
-        const basePageUrl = this.router.serializeUrl(this.router.createUrlTree([routingData.state.context.id]));
-        const currUrl = routingData.state.url;
         let tvpageUrl = '';
-        if (basePageUrl && currUrl && currUrl.startsWith(basePageUrl)) {
-          tvpageUrl = currUrl.substr(basePageUrl.length);
+        const baseUrl = this.router.serializeUrl(this.router.createUrlTree(['']));
+        const currUrl = routingData.state.url;
+        const routeConfig = this.routingConfigService.getRouteConfig('tvpageStorefront');
+
+        if (currUrl && routeConfig && routeConfig.paths) {
+          for (let path of routeConfig.paths) {
+            let routeConfigPathurl = `${baseUrl}${path}`;
+            if (currUrl === routeConfigPathurl || currUrl.startsWith(`${routeConfigPathurl}/`)) {
+              tvpageUrl = currUrl.substr(routeConfigPathurl.length);
+              break;
+            }
+          }
         }
         this.tvpageHtml$ = this.tvpageService.getPageHtml(tvpageUrl);
         this.tvpageService.populateMetaTags(tvpageUrl);
