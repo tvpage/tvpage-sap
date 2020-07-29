@@ -11,8 +11,8 @@
 
     <itemtypes>
         <typegroup name="CMS Components">
-            <itemtype code="TvpageStoreFrontCmsComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
-                      jaloclass="com.tvpageservices.jalo.cmscomponents.TvpageStoreFrontCmsComponent">
+            <itemtype code="TvpageStorefrontCmsComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
+                      jaloclass="com.tvpageservices.jalo.cmscomponents.TvpageStorefrontCmsComponent">
             </itemtype>
 
             <itemtype code="TvpageVideoCmsComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"

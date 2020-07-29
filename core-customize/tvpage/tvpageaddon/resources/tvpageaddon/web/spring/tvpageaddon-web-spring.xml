@@ -52,7 +52,7 @@
 
     <bean id="tvpageStoreFrontCMSComponentRendererMapping"
           class="de.hybris.platform.addonsupport.renderer.impl.AddOnCMSComponentRendererMapping">
-        <property name="typeCode" value="TvpageStoreFrontCmsComponent"/>
+        <property name="typeCode" value="TvpageStorefrontCmsComponent"/>
         <property name="renderer" ref="tvpageAddonComponentRenderer"/>
     </bean>
     <bean id="tvpageVideoCMSComponentRendererMapping"

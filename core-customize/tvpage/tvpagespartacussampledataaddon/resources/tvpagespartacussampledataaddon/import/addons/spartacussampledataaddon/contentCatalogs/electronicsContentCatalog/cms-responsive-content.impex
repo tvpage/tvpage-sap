@@ -10,14 +10,15 @@ $contentCatalog=electronics-spaContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $addonExtensionName=tvpagespartacussampledataaddon
 
+# TVPage Storefront
 INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
 ;;TvpageStorefrontPageTemplate;TVPage Storefront Page Template;;ContentPage
 
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
 ;;tvpageStorefront;TVPage Storefront Page;TvpageStorefrontPageTemplate;/storefront
 
-INSERT_UPDATE TvpageStoreFrontCmsComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
-;;tvpageStoreFrontCmsComponent;TVPage StoreFront Cms Component;tvpageStoreFrontCmsComponent
+INSERT_UPDATE TvpageStorefrontCmsComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;tvpageStorefrontCmsComponent;TVPage Storefront Cms Component;tvpageStorefrontCmsComponent
 
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='TvpageStorefrontPageTemplate'];validComponentTypes(code);compTypeGroup(code)
 ;SiteLogo;;;logo
@@ -33,8 +34,8 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 ;SiteContext;;CMSSiteContextComponent;
 ;SiteLinks;;CMSLinkComponent;
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
-;;Section1Slot-TvpageStorefrontPage;Section1 Slot for TVPage Storefront page;true;tvpageStoreFrontCmsComponent;;;
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);
+;;Section1Slot-TvpageStorefrontPage;Section1 Slot for TVPage Storefront page;true;tvpageStorefrontCmsComponent;
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='TvpageStorefrontPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-TvpageStorefrontPage;SiteLogo;;SiteLogoSlot;true
@@ -50,3 +51,28 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;SiteContextSlot-TvpageStorefrontPage;SiteContext;;SiteContextSlot;true
 ;;SiteLinksSlot-TvpageStorefrontPage;SiteLinks;;SiteLinksSlot;true
 ;;Section1Slot-TvpageStorefrontPage;Section1;;Section1Slot-TvpageStorefrontPage;true
+
+
+# TVPage Video
+INSERT_UPDATE TvpageVideoCmsComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;tvpageVideoCmsComponent;TVPage Video Cms Component;tvpageVideoCmsComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section4Slot-ProductDetails;Section4 Slot for Product Details;true;tvpageVideoCmsComponent;
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;Section4Slot-ProductDetails;Section4;;Section4Slot-ProductDetails;true
+
+
+# TVPage Conversion Tracker
+INSERT_UPDATE TvpageConversionTrackerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;tvpageConversionTrackerComponent;TVPage Conversion Tracker Component;tvpageConversionTrackerComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;BottomContent;;;wide
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;BottomContentSlot-OrderConfirmation;Bottom Content Slot for Order Confirmation;true;tvpageConversionTrackerComponent;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='orderConfirmationPage'];contentSlot(uid,$contentCV)[unique=true];
+;;BottomContentSlot-OrderConfirmation;BottomContent;;BottomContentSlot-OrderConfirmation;
