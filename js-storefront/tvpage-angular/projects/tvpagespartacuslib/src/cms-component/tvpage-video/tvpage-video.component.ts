@@ -11,6 +11,8 @@ import { DOCUMENT } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvpageVideoComponent implements OnInit, OnDestroy, AfterViewInit {
+  static targetElementId: string = 'sample-carousel';
+
   product$: Observable<TvpageProduct>;
   subscription: Subscription;
 
@@ -39,7 +41,7 @@ export class TvpageVideoComponent implements OnInit, OnDestroy, AfterViewInit {
               __TVPage__.config["sample-carousel"] = {
                   loginId: "1759430",
                   channel: {"id": "225234959"},
-                  targetEl: "sample-carousel"
+                  targetEl: "${TvpageVideoComponent.targetElementId}"
               };
 
               var js = d.createElement(s),
@@ -48,10 +50,18 @@ export class TvpageVideoComponent implements OnInit, OnDestroy, AfterViewInit {
               js.async = "async";
               js.src = "https://site.app.tvpage.com/1759430/tvpwidget/sample-carousel.js";
               fjs.parentNode.insertBefore(js, fjs);
-              console.log(${product.tvpageVideoJson});
+              if(${product.tvpageVideoJson}){
+                console.log(${product.tvpageVideoJson});
+              }
             }(document, 'script')); 
-          `
-          
+          `;
+
+        this.elementRef.nativeElement.innerHTML = '';
+
+        let targetElement: HTMLDivElement = this.document.createElement('div');
+        targetElement.id = TvpageVideoComponent.targetElementId;
+        this.elementRef.nativeElement.appendChild(targetElement);
+
         let scriptElement: HTMLScriptElement = this.document.createElement('script');
         scriptElement.text = tvpageWidgetScriptContent;
         this.elementRef.nativeElement.appendChild(scriptElement);
