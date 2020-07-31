@@ -33,8 +33,11 @@ export class TvpageVideoComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     this.subscription = this.product$
       .subscribe((product: TvpageProduct) => {
-        const tvpageWidgetScriptContent =
-          `
+        this.elementRef.nativeElement.innerHTML = '';
+
+        if (product.tvpageVideoJson) {
+          const tvpageWidgetScriptContent =
+            `
             (function (d, s) {
               __TVPage__ = window.__TVPage__ || {};
               __TVPage__.config = __TVPage__.config || {};
@@ -50,21 +53,18 @@ export class TvpageVideoComponent implements OnInit, OnDestroy, AfterViewInit {
               js.async = "async";
               js.src = "https://site.app.tvpage.com/1759430/tvpwidget/sample-carousel.js";
               fjs.parentNode.insertBefore(js, fjs);
-              if(${product.tvpageVideoJson}){
-                console.log(${product.tvpageVideoJson});
-              }
+              console.log(${product.tvpageVideoJson});
             }(document, 'script')); 
           `;
 
-        this.elementRef.nativeElement.innerHTML = '';
+          let targetElement: HTMLDivElement = this.document.createElement('div');
+          targetElement.id = TvpageVideoComponent.targetElementId;
+          this.elementRef.nativeElement.appendChild(targetElement);
 
-        let targetElement: HTMLDivElement = this.document.createElement('div');
-        targetElement.id = TvpageVideoComponent.targetElementId;
-        this.elementRef.nativeElement.appendChild(targetElement);
-
-        let scriptElement: HTMLScriptElement = this.document.createElement('script');
-        scriptElement.text = tvpageWidgetScriptContent;
-        this.elementRef.nativeElement.appendChild(scriptElement);
+          let scriptElement: HTMLScriptElement = this.document.createElement('script');
+          scriptElement.text = tvpageWidgetScriptContent;
+          this.elementRef.nativeElement.appendChild(scriptElement);
+        }
       });
   }
 }

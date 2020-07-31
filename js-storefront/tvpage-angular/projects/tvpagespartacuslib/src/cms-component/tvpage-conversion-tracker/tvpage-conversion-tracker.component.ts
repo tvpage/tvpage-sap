@@ -32,35 +32,37 @@ export class TvpageConversionTrackerComponent implements OnInit, OnDestroy, Afte
   ngAfterViewInit() {
     this.subscription = this.order$
       .subscribe((order: Order) => {
-        const conversionTrackerScriptContent =
-          `
-            (function() {
-              var tvpa = document.createElement('script'); tvpa.type = 'text/javascript'; tvpa.async = true;
-              tvpa.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://a.tvpage.com/tvpa.min.js';
-              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tvpa, s);
-            })();
-            
-            var _tvpa = _tvpa || [];
-            _tvpa.push(['config', {
-              li: "${this.config.tvpage ? this.config.tvpage.accountId : ''}" // Account ID
-            }]);
-          
-            _tvpa.push(['track', 'products', {
-              "tid": "${order.code}",
-              "orders": [
-                ${order.entries.map((entry) => 
-                  `{ "sku":"${entry.product.code}", "price":"${entry.basePrice.value}", "quantity": "${entry.quantity}"}`
-                ).join(',')}
-              ]
-            }]);
-          `;
-
         this.elementRef.nativeElement.innerHTML = '';
-        
-        let scriptElement: HTMLScriptElement = this.document.createElement('script');
-        scriptElement.type = 'text/javascript';
-        scriptElement.text = conversionTrackerScriptContent;
-        this.elementRef.nativeElement.appendChild(scriptElement);
+
+        if (this.config.tvpage.accountId) {
+          const conversionTrackerScriptContent =
+            `
+              (function() {
+                var tvpa = document.createElement('script'); tvpa.type = 'text/javascript'; tvpa.async = true;
+                tvpa.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://a.tvpage.com/tvpa.min.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tvpa, s);
+              })();
+              
+              var _tvpa = _tvpa || [];
+              _tvpa.push(['config', {
+                li: "${this.config.tvpage.accountId}" // Account ID
+              }]);
+            
+              _tvpa.push(['track', 'products', {
+                "tid": "${order.code}",
+                "orders": [
+                  ${order.entries.map((entry) =>
+                    `{ "sku":"${entry.product.code}", "price":"${entry.basePrice.value}", "quantity": "${entry.quantity}"}`
+                  ).join(',')}
+                ]
+              }]);
+            `;
+
+          let scriptElement: HTMLScriptElement = this.document.createElement('script');
+          scriptElement.type = 'text/javascript';
+          scriptElement.text = conversionTrackerScriptContent;
+          this.elementRef.nativeElement.appendChild(scriptElement);
+        }
       });
   }
 }
