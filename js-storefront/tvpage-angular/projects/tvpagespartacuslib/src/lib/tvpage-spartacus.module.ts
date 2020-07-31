@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PageLayoutComponent, CmsPageGuard, LayoutConfig } from '@spartacus/storefront';
 import { TvpageStorefrontModule, TvpageVideoModule, TvpageConversionTrackerModule } from '../cms-component';
 import { provideDefaultConfig, RoutingConfig, provideConfig, OccConfig } from '@spartacus/core';
+import { TvpageConfig } from '../model/TvpageConfig';
 
 @NgModule({
   declarations: [],
@@ -60,7 +61,7 @@ import { provideDefaultConfig, RoutingConfig, provideConfig, OccConfig } from '@
           slots: [
             'BodyContent',
             'SideContent',
-
+            'BottomContent'
           ],
         },
       }
@@ -87,4 +88,11 @@ import { provideDefaultConfig, RoutingConfig, provideConfig, OccConfig } from '@
     })
   ],
 })
-export class TvpageSpartacusModule { }
+export class TvpageSpartacusModule {
+  static withConfig(config?: TvpageConfig): ModuleWithProviders<TvpageSpartacusModule> {
+    return {
+      ngModule: TvpageSpartacusModule,
+      providers: [provideConfig(config)],
+    };
+  }
+}

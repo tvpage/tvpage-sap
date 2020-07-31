@@ -12,7 +12,11 @@ import { TvpageSpartacusModule } from '@tvpage/spartacus';
   ],
   imports: [
     BrowserModule,
-    TvpageSpartacusModule,
+    TvpageSpartacusModule.withConfig({
+      tvpage: {
+        accountId: '12345abc'
+      }
+    }),
     B2cStorefrontModule.withConfig({
       backend: {
         occ: {
