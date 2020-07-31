@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CmsComponentData } from '@spartacus/storefront';
-import { TvpageStoreFrontCmsComponent } from '../../model/TvpageStorefrontCmsComponent';
 import { RoutingService, RoutingConfigService } from '@spartacus/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,7 +16,6 @@ export class TvpageStorefrontComponent implements OnInit {
   tvpageHtml$: Observable<string>;
 
   constructor(
-    public component: CmsComponentData<TvpageStoreFrontCmsComponent>,
     protected tvpageService: TvpageService,
     protected routingService: RoutingService,
     protected routingConfigService: RoutingConfigService,

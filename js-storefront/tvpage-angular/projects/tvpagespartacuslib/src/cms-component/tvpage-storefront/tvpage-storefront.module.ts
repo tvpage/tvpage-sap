@@ -10,7 +10,7 @@ import { CmsConfig, provideDefaultConfig } from '@spartacus/core';
   providers: [
     provideDefaultConfig(<CmsConfig>{
       cmsComponents: {
-        TvpageStoreFrontCmsComponent: {
+        TvpageStorefrontCmsComponent: {
           component: TvpageStorefrontComponent,
         }
       },
