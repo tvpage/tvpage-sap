@@ -32,12 +32,23 @@
                       generate="false">
                 <attributes>
                     <attribute qualifier="tvpageVideoJson" type="java.lang.String">
-                        <description>Product Json</description>
+                        <description>Product Video JSON</description>
                         <modifiers initial="true"/>
+                        <persistence type="property">
+                            <columntype database="oracle">
+                                <value>varchar2(4000)</value>
+                            </columntype>
+                            <columntype>
+                                <value>HYBRIS.LONG_STRING</value>
+                            </columntype>
+                        </persistence>
+                    </attribute>
+                    <attribute qualifier="tvpageVideoLastModifiedTimestamp" type="java.lang.Long">
+                        <description>The last modified timestamp for the product video JSON</description>
                         <persistence type="property"/>
+                        <modifiers optional="true"/>
                     </attribute>
                 </attributes>
-                >
             </itemtype>
         </typegroup>
     </itemtypes>

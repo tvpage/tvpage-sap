@@ -22,7 +22,7 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("/storefront/**")
 public class TvpageStorefrontController extends AbstractPageController {
     private static final Logger log = Logger.getLogger(TvpageStorefrontController.class);
-    private static final String TVPAGE_STOREFRONT_CMS_PAGE = "tvpagestorefrontPage";
+    private static final String TVPAGE_STOREFRONT_CMS_PAGE = "tvpageStorefront";
 
     @Resource(name = "tvpageStorefrontFacade")
     private TvpageStoreFrontFacade tvpageStorefrontFacade;

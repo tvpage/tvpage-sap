@@ -10,6 +10,8 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <bean id="tvpageServiceSystemSetup" class="com.tvpageservices.setup.TvpageServicesSystemSetup" parent="abstractCoreSystemSetup" />
+
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 
     </bean>
