@@ -1,4 +1,4 @@
-package com.hybris.tvpage.controllers.pages;
+package com.tvpage.addon.controllers.pages;
 
 import com.tvpagefacades.TvpageStoreFrontFacade;
 import com.tvpagefacades.data.TvpageMetaData;

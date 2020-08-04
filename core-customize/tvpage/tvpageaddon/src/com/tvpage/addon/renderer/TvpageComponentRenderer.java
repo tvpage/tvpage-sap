@@ -1,9 +1,9 @@
 /*
  * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
  */
-package com.hybris.tvpage.renderer;
+package com.tvpage.addon.renderer;
 
-import com.hybris.tvpage.constants.TvpageaddonConstants;
+import com.tvpage.addon.constants.TvpageaddonConstants;
 import de.hybris.platform.addonsupport.renderer.impl.DefaultAddOnCMSComponentRenderer;
 import de.hybris.platform.cms2.model.contents.components.SimpleCMSComponentModel;
 
