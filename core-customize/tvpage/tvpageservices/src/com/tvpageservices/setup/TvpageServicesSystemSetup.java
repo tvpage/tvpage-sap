@@ -23,5 +23,6 @@ public class TvpageServicesSystemSetup extends AbstractSystemSetup {
     public void createEssentialData(final SystemSetupContext context) {
         importImpexFile(context, "/tvpageservices/import/essentialdata_cms.impex", true);
         importImpexFile(context, "/tvpageservices/import/essentialdata_integrationobjects.impex", true);
+        importImpexFile(context, "/tvpageservices/import/essentialdata_syncattributes.impex", true);
     }
 }
