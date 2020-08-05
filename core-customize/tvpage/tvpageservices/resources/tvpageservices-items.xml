@@ -43,7 +43,7 @@
                             </columntype>
                         </persistence>
                     </attribute>
-                    <attribute qualifier="tvpageVideoLastModifiedTimestamp" type="java.lang.Long">
+                    <attribute qualifier="tvpageVideoModifiedTime" type="java.util.Date">
                         <description>The last modified timestamp for the product video JSON</description>
                         <persistence type="property"/>
                         <modifiers optional="true"/>
