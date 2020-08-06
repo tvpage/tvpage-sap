@@ -16,8 +16,8 @@
         <requires-extension name="addonsupport"/>
         <requires-extension name="tvpagefacades"/>
 
-        <coremodule generated="true" manager="com.hybris.tvpage.jalo.TvpageaddonManager"
-                    packageroot="com.hybris.tvpage"/>
+        <coremodule generated="true" manager="com.tvpage.addon.jalo.TvpageaddonManager"
+                    packageroot="com.tvpage.addon"/>
 
 
         <meta key="classpathgen" value="false"/>

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
  */
-package com.hybris.tvpage.jalo;
+package com.tvpage.addon.jalo;
 
 import de.hybris.platform.core.Registry;
 import de.hybris.platform.util.JspContext;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.hybris.tvpage.constants.TvpageaddonConstants;
+import com.tvpage.addon.constants.TvpageaddonConstants;
 
 
 /**

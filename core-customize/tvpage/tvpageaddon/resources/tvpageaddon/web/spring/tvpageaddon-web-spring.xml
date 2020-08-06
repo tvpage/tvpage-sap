@@ -18,7 +18,7 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="com.hybris.tvpage.controllers"/>
+    <context:component-scan base-package="com.tvpage.addon"/>
     <!-- Expose /acceleratoraddon/web/webroot/WEB-INF/messages/base.js.properties  resource bundle as javascript variables -->
     <bean id="defaultTvpageaddonJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
         <property name="addOnName" value="tvpageaddon"/>
@@ -40,14 +40,7 @@
         <property name="add" ref="getTvpageaddonBeforeViewHandler"/>
     </bean>
 
-    <!--	<bean id="tvpageAddonBeforeViewHandler" class="com.hybris.tvpage.interceptors.TvpageAddonBeforeViewHandler">
-            <property name="viewMap" ref="tvPageAddonViewMap" />
-        </bean>-->
-
-    <!--	<bean depends-on="beforeViewHandlersList" parent="listMergeDirective">
-            <property name="add" ref="tvpageAddonBeforeViewHandler" />
-        </bean>-->
-    <bean id="tvpageAddonComponentRenderer" class="com.hybris.tvpage.renderer.TvpageComponentRenderer"
+    <bean id="tvpageAddonComponentRenderer" class="com.tvpage.addon.renderer.TvpageComponentRenderer"
           parent="addOnJspIncludeCMSComponentRenderer"/>
 
     <bean id="tvpageStoreFrontCMSComponentRendererMapping"
@@ -65,22 +58,12 @@
         <property name="typeCode" value="TvpageConversionTrackerComponent"/>
         <property name="renderer" ref="tvpageAddonComponentRenderer"/>
     </bean>
-    <!--
-        <util:map id="tvPageAddonViewMap" key-type="java.lang.String" value-type="java.lang.Map">
-            <entry key="cms/tvpageconversiontrackercomponent" value-ref="tvpageconversiontrackercomponentMap"/>
-            <entry key="cms/tvpagestorefrontcmscomponent" value-ref="tvpagestorefrontcmscomponentMap"/>
-            <entry key="cms/tvpagevideocmscomponent" value-ref="tvpagevideocmscomponentMap"/>
-        </util:map>
 
-        <util:map id="tvpageconversiontrackercomponentMap" key-type="java.lang.String" value-type="java.lang.String">
-            <entry key="viewName" value="/cms/tvpageconversiontrackercomponent" />
-        </util:map>
+    <bean id="tvpageBeforeViewHandler" class="com.tvpage.addon.interceptors.beforeview.TvpageBeforeViewHandler"/>
 
-        <util:map id="tvpagestorefrontcmscomponentMap" key-type="java.lang.String" value-type="java.lang.String">
-            <entry key="viewName" value="/cms/tvpagestorefrontcmscomponent" />
-        </util:map>
+    <bean id="tvpageBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList"
+          parent="listMergeDirective">
+        <property name="add" ref="tvpageBeforeViewHandler"/>
+    </bean>
 
-        <util:map id="tvpagevideocmscomponentMap" key-type="java.lang.String" value-type="java.lang.String">
-            <entry key="viewName" value="/cms/tvpagevideocmscomponent" />
-        </util:map>-->
 </beans>
