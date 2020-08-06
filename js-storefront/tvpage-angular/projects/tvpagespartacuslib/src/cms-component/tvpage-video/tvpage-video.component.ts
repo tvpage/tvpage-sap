@@ -35,36 +35,36 @@ export class TvpageVideoComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe((product: TvpageProduct) => {
         this.elementRef.nativeElement.innerHTML = '';
 
-        if (product.tvpageVideoJson) {
-          const tvpageWidgetScriptContent =
-            `
-            (function (d, s) {
-              __TVPage__ = window.__TVPage__ || {};
-              __TVPage__.config = __TVPage__.config || {};
-              __TVPage__.config["sample-carousel"] = {
-                  loginId: "1759430",
-                  channel: {"id": "225234959"},
-                  targetEl: "${TvpageVideoComponent.targetElementId}"
-              };
+        const tvpageWidgetScriptContent =
+          `
+          (function (d, s) {
+            __TVPage__ = window.__TVPage__ || {};
+            __TVPage__.config = __TVPage__.config || {};
+            __TVPage__.config["sample-carousel"] = {
+                targetEl: "${TvpageVideoComponent.targetElementId}",
+                type: "carousel",
+                ${product.tvpageVideoJson ? 
+                  `data: ${product.tvpageVideoJson},`:
+                  `channel: {"id": "225234959", parameters:{"referenceId":""}},`
+                }
+            };
 
-              var js = d.createElement(s),
-                  fjs = d.getElementsByTagName(s)[0];
+            var js = d.createElement(s),
+                fjs = d.getElementsByTagName(s)[0];
 
-              js.async = "async";
-              js.src = "https://site.app.tvpage.com/1759430/tvpwidget/sample-carousel.js";
-              fjs.parentNode.insertBefore(js, fjs);
-              console.log(${product.tvpageVideoJson});
-            }(document, 'script')); 
-          `;
+            js.async = "async";
+            js.src = "https://site.app.tvpage.com/1759430/tvpwidget/sample-carousel.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script')); 
+        `;
 
-          let targetElement: HTMLDivElement = this.document.createElement('div');
-          targetElement.id = TvpageVideoComponent.targetElementId;
-          this.elementRef.nativeElement.appendChild(targetElement);
+        let targetElement: HTMLDivElement = this.document.createElement('div');
+        targetElement.id = TvpageVideoComponent.targetElementId;
+        this.elementRef.nativeElement.appendChild(targetElement);
 
-          let scriptElement: HTMLScriptElement = this.document.createElement('script');
-          scriptElement.text = tvpageWidgetScriptContent;
-          this.elementRef.nativeElement.appendChild(scriptElement);
-        }
+        let scriptElement: HTMLScriptElement = this.document.createElement('script');
+        scriptElement.text = tvpageWidgetScriptContent;
+        this.elementRef.nativeElement.appendChild(scriptElement);
       });
   }
 }
