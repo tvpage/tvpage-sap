@@ -36,7 +36,16 @@
                         <modifiers initial="true"/>
                         <persistence type="property">
                             <columntype database="oracle">
-                                <value>varchar2(4000)</value>
+                                <value>CLOB</value>
+                            </columntype>
+                            <columntype database="sap">
+                                <value>NCLOB</value>
+                            </columntype>
+                            <columntype database="mysql">
+                                <value>MEDIUMTEXT</value>
+                            </columntype>
+                            <columntype database="sqlserver">
+                                <value>TEXT</value>
                             </columntype>
                             <columntype>
                                 <value>HYBRIS.LONG_STRING</value>
