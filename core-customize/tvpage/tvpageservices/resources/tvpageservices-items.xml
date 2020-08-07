@@ -17,6 +17,11 @@
 
             <itemtype code="TvpageVideoCmsComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
                       jaloclass="com.tvpageservices.jalo.cmscomponents.TvpageVideoCmsComponent">
+                <attributes>
+                    <attribute qualifier="srcUrl" type="java.lang.String">
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
             </itemtype>
 
             <itemtype code="TvpageConversionTrackerComponent" extends="SimpleCMSComponent" autocreate="true"
