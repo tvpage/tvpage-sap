@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping(TvpageaddonWebConstants.TVPAGE_STOREFRONT_CMS_PAGE_URL + "/**")
+@RequestMapping(TvpageaddonWebConstants.TVPAGE_STOREFRONT_URL_PREFIX + "/**")
 public class TvpageStorefrontController extends AbstractPageController {
     private static final Logger LOG = Logger.getLogger(TvpageStorefrontController.class);
 
@@ -29,7 +29,7 @@ public class TvpageStorefrontController extends AbstractPageController {
     @RequestMapping(method = RequestMethod.GET)
     public String getStorefrontPage(final Model model, final HttpServletRequest request) throws CMSItemNotFoundException {
         String urlPath = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-        String tvpageUrl = urlPath.substring(TvpageaddonWebConstants.TVPAGE_STOREFRONT_CMS_PAGE_URL.length());
+        String tvpageUrl = urlPath.substring(TvpageaddonWebConstants.TVPAGE_STOREFRONT_URL_PREFIX.length());
 
         final ContentPageModel contentPage = getContentPageForLabelOrId(TVPAGE_STOREFRONT_CMS_PAGE);
         String tvPageHtml = tvpageStorefrontFacade.getTvpageStorefrontHtml(tvpageUrl);
