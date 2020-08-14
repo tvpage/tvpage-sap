@@ -1,5 +1,6 @@
 package com.tvpage.addon.controllers.pages;
 
+import com.tvpage.addon.constants.TvpageaddonWebConstants;
 import com.tvpagefacades.TvpageStoreFrontFacade;
 import com.tvpagefacades.data.TvpageMetaData;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
@@ -16,9 +17,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/storefront/**")
+@RequestMapping(TvpageaddonWebConstants.TVPAGE_STOREFRONT_URL_PREFIX + "/**")
 public class TvpageStorefrontController extends AbstractPageController {
     private static final Logger LOG = Logger.getLogger(TvpageStorefrontController.class);
+
     private static final String TVPAGE_STOREFRONT_CMS_PAGE = "tvpageStorefront";
 
     @Resource(name = "tvpageStorefrontFacade")
@@ -26,11 +28,12 @@ public class TvpageStorefrontController extends AbstractPageController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getStorefrontPage(final Model model, final HttpServletRequest request) throws CMSItemNotFoundException {
-        String restOfTheUrl = (String) request.getAttribute(
-                HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+        String urlPath = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+        String tvpageUrl = urlPath.substring(TvpageaddonWebConstants.TVPAGE_STOREFRONT_URL_PREFIX.length());
+
         final ContentPageModel contentPage = getContentPageForLabelOrId(TVPAGE_STOREFRONT_CMS_PAGE);
-        String tvPageHtml = tvpageStorefrontFacade.getTvpageStorefrontHtml("dummy");
-        TvpageMetaData tvpageMetaData = tvpageStorefrontFacade.getTvpageStorefrontMetaTags("dummy");
+        String tvPageHtml = tvpageStorefrontFacade.getTvpageStorefrontHtml(tvpageUrl);
+        TvpageMetaData tvpageMetaData = tvpageStorefrontFacade.getTvpageStorefrontMetaTags(tvpageUrl);
         model.addAttribute("tvPagehtml", tvPageHtml);
         model.addAttribute("tvpageMetaData", tvpageMetaData);
         storeCmsPageInModel(model, contentPage);

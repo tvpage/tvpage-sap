@@ -43,9 +43,8 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;Section1Slot-TvpageStorefrontPage;Section1;;Section1Slot-TvpageStorefrontPage;true
 
 
-# TVPage Video
-INSERT_UPDATE TvpageVideoCmsComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
-;;tvpageVideoCmsComponent;TVPage Video Cms Component;tvpageVideoCmsComponent
+INSERT_UPDATE TvpageVideoCmsComponent;$contentCV[unique=true];uid[unique=true];name;srcUrl;&componentRef
+;;tvpageVideoCmsComponent;TVPage Video Cms Component;https://site.app.tvpage.com/1759430/tvpwidget/widget-carousel.js;tvpageVideoCmsComponent
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
 ;;Section4Slot-ProductDetails;Section4 Slot for Product Details;true;tvpageVideoCmsComponent;

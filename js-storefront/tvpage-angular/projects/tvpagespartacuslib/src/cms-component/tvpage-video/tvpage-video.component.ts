@@ -1,8 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy, Inject, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { CurrentProductService } from '@spartacus/storefront';
+import { Observable, Subscription, combineLatest } from 'rxjs';
+import { CurrentProductService, CmsComponentData } from '@spartacus/storefront';
 import { TvpageProduct } from '../../model/TvpageProduct';
 import { DOCUMENT } from '@angular/common';
+import { TvpageVideoCmsComponent } from '../../model/TvpageVideoCmsComponent';
 
 @Component({
   selector: 'cx-tvpage-video',
@@ -11,12 +12,13 @@ import { DOCUMENT } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TvpageVideoComponent implements OnInit, OnDestroy, AfterViewInit {
-  static targetElementId: string = 'sample-carousel';
+  static targetElementId: string = 'widget-carousel';
 
   product$: Observable<TvpageProduct>;
   subscription: Subscription;
 
   constructor(
+    public component: CmsComponentData<TvpageVideoCmsComponent>,
     protected currentProductService: CurrentProductService,
     @Inject(DOCUMENT) private document,
     private elementRef: ElementRef
@@ -31,29 +33,28 @@ export class TvpageVideoComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.subscription = this.product$
-      .subscribe((product: TvpageProduct) => {
+    this.subscription = combineLatest(this.component.data$, this.product$)
+      .subscribe(([componentData, product]) => {
         this.elementRef.nativeElement.innerHTML = '';
 
-        if (product.tvpageVideoJson) {
+        if (componentData && componentData.srcUrl) {
           const tvpageWidgetScriptContent =
             `
             (function (d, s) {
               __TVPage__ = window.__TVPage__ || {};
               __TVPage__.config = __TVPage__.config || {};
-              __TVPage__.config["sample-carousel"] = {
-                  loginId: "1759430",
-                  channel: {"id": "225234959"},
-                  targetEl: "${TvpageVideoComponent.targetElementId}"
+              __TVPage__.config["${TvpageVideoComponent.targetElementId}"] = {
+                  targetEl: "${TvpageVideoComponent.targetElementId}",
+                  type: "carousel",
+                  data: ${product && product.tvpageVideoJson ? product.tvpageVideoJson : `[]`},
               };
 
               var js = d.createElement(s),
                   fjs = d.getElementsByTagName(s)[0];
 
               js.async = "async";
-              js.src = "https://site.app.tvpage.com/1759430/tvpwidget/sample-carousel.js";
+              js.src = "${componentData.srcUrl}";
               fjs.parentNode.insertBefore(js, fjs);
-              console.log(${product.tvpageVideoJson});
             }(document, 'script')); 
           `;
 

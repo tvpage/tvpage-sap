@@ -1,15 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:if test="${not empty product.tvpageVideoJson}">
-    <div id="sample-carousel"></div>
+<c:if test="${not empty srcUrl}">
+    <div id="widget-carousel"></div>
     <script>
         (function (d, s) {
             __TVPage__ = window.__TVPage__ || {};
             __TVPage__.config = __TVPage__.config || {};
-            __TVPage__.config["sample-carousel"] = {
-                loginId: "1759430",
-                channel: {"id": "225234959"},
-                targetEl: "sample-carousel"
+            __TVPage__.config["widget-carousel"] = {
+                targetEl: "widget-carousel",
+                type: "carousel",
+                data: ${not empty product && not empty product.tvpageVideoJson ? product.tvpageVideoJson : []},
             };
 
             window.addEventListener("load", function () {
@@ -17,10 +17,10 @@
                     fjs = d.getElementsByTagName(s)[0];
 
                 js.async = "async";
-                js.src = "https://site.app.tvpage.com/1759430/tvpwidget/sample-carousel.js";
+                js.src = "${srcUrl}";
                 fjs.parentNode.insertBefore(js, fjs);
             }, false);
-            console.log(${product.tvpageVideoJson});
         }(document, 'script'));
     </script>
 </c:if>
+

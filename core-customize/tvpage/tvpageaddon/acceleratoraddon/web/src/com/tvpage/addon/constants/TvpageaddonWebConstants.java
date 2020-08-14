@@ -3,14 +3,10 @@
  */
 package com.tvpage.addon.constants;
 
-/**
- * Global class for all Tvpageaddon web constants. You can add global constants for your extension into this class.
- */
-public final class TvpageaddonWebConstants // NOSONAR
-{
-    private TvpageaddonWebConstants() {
-        //empty to avoid instantiating this constant class
-    }
+public final class TvpageaddonWebConstants {
 
-    // implement here constants used by this extension
+    public static final String TVPAGE_STOREFRONT_URL_PREFIX = "/storefront";
+
+    private TvpageaddonWebConstants() {
+    }
 }
