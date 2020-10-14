@@ -18,7 +18,6 @@ public class TvpageStorefrontFacadeImpl implements TvpageStoreFrontFacade {
     @Override
     public TvpageMetaData getTvpageStorefrontMetaTags(String uri) {
         String tvPageResponseJson = tvpageStoreFrontService.getTvpageStorefrontMetaTags(uri);
-        // Gson gson = new Gson();
         Gson gson = new Gson();
         TvpageMetaData tagData = gson.fromJson(tvPageResponseJson, TvpageMetaData.class);
         return tagData;

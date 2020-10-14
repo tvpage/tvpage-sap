@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { CmsComponentData } from '@spartacus/storefront';
+import { ChangeDetectionStrategy, Component, OnInit, Inject, ElementRef } from '@angular/core';
 import { RoutingService, RoutingConfigService } from '@spartacus/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { TvpageService } from '../../service/tvpage.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'cx-tvpage-storefront',
@@ -14,12 +14,15 @@ import { TvpageService } from '../../service/tvpage.service';
 export class TvpageStorefrontComponent implements OnInit {
 
   tvpageHtml$: Observable<string>;
+  tvpageHtmlSubscription: Subscription;
 
   constructor(
     protected tvpageService: TvpageService,
     protected routingService: RoutingService,
     protected routingConfigService: RoutingConfigService,
-    protected router: Router
+    protected router: Router,
+    @Inject(DOCUMENT) private document,
+    private elementRef: ElementRef
   ) { }
 
   ngOnInit(): void {
@@ -44,5 +47,18 @@ export class TvpageStorefrontComponent implements OnInit {
         this.tvpageService.populateMetaTags(tvpageUrl);
       })
       .unsubscribe();
+  }
+
+  ngOnDestroy() {
+    this.tvpageHtmlSubscription.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    this.tvpageHtmlSubscription = this.tvpageHtml$
+      .subscribe((html: string) => {
+        this.elementRef.nativeElement.innerHTML = '';
+        let fragment = this.document.createRange().createContextualFragment(html);
+        this.elementRef.nativeElement.appendChild(fragment);
+      });
   }
 }

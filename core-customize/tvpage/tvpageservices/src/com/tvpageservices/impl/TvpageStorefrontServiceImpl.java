@@ -1,34 +1,58 @@
 package com.tvpageservices.impl;
 
 import com.tvpageservices.TvpageStorefrontService;
+import de.hybris.platform.acceleratorservices.config.SiteConfigService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TvpageStorefrontServiceImpl implements TvpageStorefrontService {
 
-    RestTemplate restTemplate;
+    private static final String TVPAGE_STOREFRONT_HTML_BASE_ENDPOINT = "tvpage.storefront.html.base.endpoint";
+    private static final String TVPAGE_STOREFRONT_META_BASE_ENDPOINT = "tvpage.storefront.meta.base.endpoint";
+    private static final String TVPAGE_STOREFRONT_META_HOME_PATH = "tvpage.storefront.meta.home.path";
 
-    final String ROOT_URI = "https://localhost:8080/Tvpage/respose.json";
+    private RestTemplate restTemplate;
+    private SiteConfigService siteConfigService;
 
     @Override
     public String getTvpageStorefrontHtml(String uri) {
-        //      String response = restTemplate.getForObject(ROOT_URI + uri, String.class);
-        String response = "<div>hello world!Welcome to TvPage Storefront!</div>";
-        return response;
+        String response = restTemplate.getForObject(siteConfigService.getProperty(TVPAGE_STOREFRONT_HTML_BASE_ENDPOINT) + uri, String.class);
+        Pattern pattern = Pattern.compile("<body.*?>(.*?)</body>", Pattern.DOTALL);
+        Matcher matcher = pattern.matcher(response);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return StringUtils.EMPTY;
     }
 
     @Override
     public String getTvpageStorefrontMetaTags(String uri) {
-        //      String response = restTemplate.getForObject(ROOT_URI + uri, String.class);
-        String response = "{ \"html\": { \"head\": { \"tags\": [ { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"http-equiv\", \"value\": \"Content-Type\" }, { \"attribute\": \"content\", \"value\": \"text/html; charset=UTF-8\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"charset\", \"value\": \"utf-8\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"name\", \"value\": \"viewport\" }, { \"attribute\": \"content\", \"value\": \"width=device-width,minimum-scale=1,initial-scale=1\" } ] }, { \"tag\": \"link\", \"attributes\": [ { \"attribute\": \"rel\", \"value\": \"canonical\" }, { \"attribute\": \"href\", \"value\": \"https://www.google.com\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"name\", \"value\": \"description\" }, { \"attribute\": \"content\", \"value\": \"tvp supplied description\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"property\", \"value\": \"og:url\" }, { \"attribute\": \"content\", \"value\": \"tvp suppplied url\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"property\", \"value\": \"og:type\" }, { \"attribute\": \"content\", \"value\": \"website\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"property\", \"value\": \"og:title\" }, { \"attribute\": \"content\", \"value\": \"page title\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"property\", \"value\": \"og:image\" }, { \"attribute\": \"content\", \"value\": \"https://static.prod.tvpage.com/1759430/static/images/logo.png\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"property\", \"value\": \"og:image:secure_url\" }, { \"attribute\": \"content\", \"value\": \"https://static.prod.tvpage.com/1759430/static/images/logo.png\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"property\", \"value\": \"og:image:width\" }, { \"attribute\": \"content\", \"value\": \"854\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"property\", \"value\": \"og:image:height\" }, { \"attribute\": \"content\", \"value\": \"480\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"property\", \"value\": \"og:image:alt\" }, { \"attribute\": \"content\", \"value\": \"Image alt description\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"name\", \"value\": \"twitter:card\" }, { \"attribute\": \"content\", \"value\": \"summary_large_image\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"name\", \"value\": \"twitter:title\" }, { \"attribute\": \"content\", \"value\": \"page title\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"name\", \"value\": \"twitter:description\" }, { \"attribute\": \"content\", \"value\": \"page description\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"name\", \"value\": \"twitter:image\" }, { \"attribute\": \"content\", \"value\": \"https://static.prod.tvpage.com/1759430/static/images/logo.png\" } ] }, { \"tag\": \"link\", \"attributes\": [ { \"attribute\": \"rel\", \"value\": \"shortcut icon\" }, { \"attribute\": \"href\", \"value\": \"https://static.prod.tvpage.com/1759430/static/favicon/favicon.ico\" } ] }, { \"tag\": \"link\", \"attributes\": [ { \"attribute\": \"rel\", \"value\": \"apple-touch-icon-precomposed\" }, { \"attribute\": \"sizes\", \"value\": \"152x152\" }, { \"attribute\": \"href\", \"value\": \"https://static.prod.tvpage.com/1759430/static/favicon/favicon.ico\" } ] }, { \"tag\": \"meta\", \"attributes\": [ { \"attribute\": \"http-equiv\", \"value\": \"x-dns-prefetch-control\" }, { \"attribute\": \"content\", \"value\": \"on\" } ] },{ \"tag\": \"link\", \"attributes\": [ { \"attribute\": \"rel\", \"value\": \"dns-prefetch\" }, { \"attribute\": \"href\", \"value\": \"//cdnjs.tvpage.com\" } ] }, { \"tag\": \"link\", \"attributes\": [ { \"attribute\": \"rel\", \"value\": \"dns-prefetch\" }, { \"attribute\": \"href\", \"value\": \"//a.tvpage.com\" } ] }, { \"tag\": \"link\", \"attributes\": [ { \"attribute\": \"rel\", \"value\": \"dns-prefetch\" }, { \"attribute\": \"href\", \"value\": \"//v.tvpage.com\" } ] }, { \"tag\": \"link\", \"attributes\": [ { \"attribute\": \"rel\", \"value\": \"dns-prefetch\" }, { \"attribute\": \"href\", \"value\": \"//api.tvpage.com\" } ] }, { \"tag\": \"title\", \"value\": \"page title\", \"attributes\": [] } ] } } }";
-
-        return response;
+        if (StringUtils.isBlank(uri) || "/".equals(uri)) {
+            uri = siteConfigService.getProperty(TVPAGE_STOREFRONT_META_HOME_PATH);
+        }
+        return restTemplate.getForObject(siteConfigService.getProperty(TVPAGE_STOREFRONT_META_BASE_ENDPOINT) + uri, String.class);
     }
 
-    public RestTemplate getRestTemplate() {
+    protected RestTemplate getRestTemplate() {
         return restTemplate;
     }
 
+
+    @Required
     public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
+    }
+
+    protected SiteConfigService getSiteConfigService() {
+        return siteConfigService;
+    }
+
+    @Required
+    public void setSiteConfigService(SiteConfigService siteConfigService) {
+        this.siteConfigService = siteConfigService;
     }
 }

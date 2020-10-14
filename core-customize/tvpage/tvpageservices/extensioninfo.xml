@@ -21,6 +21,7 @@
 
         <requires-extension name="cms2"/>
         <requires-extension name="commerceservices"/>
+        <requires-extension name="acceleratorservices"/>
 
         <coremodule generated="true" manager="com.tvpageservices.jalo.TvpageservicesManager"
                     packageroot="com.tvpageservices"/>
