@@ -19,6 +19,7 @@
     <alias name="defaultTvpageStorefrontServiceImpl" alias="tvpageStoreFrontService"/>
     <bean id="defaultTvpageStorefrontServiceImpl" class="com.tvpageservices.impl.TvpageStorefrontServiceImpl">
         <property name="restTemplate" ref="restTemplate"></property>
+        <property name="siteConfigService" ref="siteConfigService"/>
     </bean>
 
 </beans>
