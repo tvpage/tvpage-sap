@@ -15,10 +15,10 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
 ;;TvpageStorefrontPageTemplate;TVPage Storefront Page Template;;ContentPage
 
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
-;;tvpageStorefront;TVPage Storefront Page;TvpageStorefrontPageTemplate;/storefront
+;;tvpageStorefront;TVPage Storefronts Page;TvpageStorefrontPageTemplate;/storefronts
 
 INSERT_UPDATE TvpageStorefrontCmsComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
-;;tvpageStorefrontCmsComponent;TVPage Storefront Cms Component;tvpageStorefrontCmsComponent
+;;tvpageStorefrontCmsComponent;TVPage Storefronts Cms Component;tvpageStorefrontCmsComponent
 
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='TvpageStorefrontPageTemplate'];validComponentTypes(code);compTypeGroup(code)
 ;SiteLogo;;;logo

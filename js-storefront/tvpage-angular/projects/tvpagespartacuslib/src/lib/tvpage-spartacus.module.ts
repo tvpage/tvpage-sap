@@ -17,12 +17,12 @@ import { TvpageConfig } from '../model/TvpageConfig';
       {
         data: {
           cxRoute: 'tvpageStorefront',
-          pageLabel: '/storefront'
+          pageLabel: '/storefronts'
         },
         path: null,
         children: [{
           data: {
-            pageLabel: '/storefront'
+            pageLabel: '/storefronts'
           },
           path: '**',
           component: PageLayoutComponent,
@@ -70,7 +70,7 @@ import { TvpageConfig } from '../model/TvpageConfig';
       routing: {
         routes: {
           tvpageStorefront: {
-            paths: ['storefront']
+            paths: ['storefronts']
           }
         },
       },
