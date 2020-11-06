@@ -36,27 +36,29 @@ export class TvpageStorefrontComponent implements OnInit {
     this.routerStateSubscription = this.routingService
       .getRouterState()
       .subscribe((routingData) => {
-        let tvpageUrl = '';
-        const baseUrl = this.router.serializeUrl(this.router.createUrlTree(['']));
-        const currUrl = routingData.state.url;
-        const routeConfig = this.routingConfigService.getRouteConfig('tvpageStorefront');
+        if (routingData.nextState == null) {
+          let tvpageUrl = '';
+          const baseUrl = this.router.serializeUrl(this.router.createUrlTree(['']));
+          const currUrl = routingData.state.url;
+          const routeConfig = this.routingConfigService.getRouteConfig('tvpageStorefront');
 
-        if (currUrl && routeConfig && routeConfig.paths) {
-          for (let path of routeConfig.paths) {
-            let routeConfigPathurl = `${baseUrl}${path}`;
-            if (currUrl === routeConfigPathurl || currUrl.startsWith(`${routeConfigPathurl}/`)) {
-              tvpageUrl = currUrl.substr(routeConfigPathurl.length);
-              break;
+          if (currUrl && routeConfig && routeConfig.paths) {
+            for (let path of routeConfig.paths) {
+              let routeConfigPathurl = `${baseUrl}${path}`;
+              if (currUrl === routeConfigPathurl || currUrl.startsWith(`${routeConfigPathurl}/`)) {
+                tvpageUrl = currUrl.substr(routeConfigPathurl.length);
+                break;
+              }
             }
           }
+          this.tvpageService.getPageHtml(tvpageUrl)
+            .subscribe((html: string) => {
+              this.elementRef.nativeElement.innerHTML = '';
+              let fragment = this.document.createRange().createContextualFragment(html);
+              this.elementRef.nativeElement.appendChild(fragment);
+            });
+          this.tvpageService.populateMetaTags(tvpageUrl);
         }
-        this.tvpageService.getPageHtml(tvpageUrl)
-          .subscribe((html: string) => {
-            this.elementRef.nativeElement.innerHTML = '';
-            let fragment = this.document.createRange().createContextualFragment(html);
-            this.elementRef.nativeElement.appendChild(fragment);
-          });
-        this.tvpageService.populateMetaTags(tvpageUrl);
       });
   }
 }
