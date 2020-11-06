@@ -5,7 +5,7 @@ package com.tvpage.addon.constants;
 
 public final class TvpageaddonWebConstants {
 
-    public static final String TVPAGE_STOREFRONT_URL_PREFIX = "/storefront";
+    public static final String TVPAGE_STOREFRONT_URL_PREFIX = "/storefronts";
 
     private TvpageaddonWebConstants() {
     }
