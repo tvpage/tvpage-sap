@@ -1,0 +1,45 @@
+# Intellij
+.idea/
+*.iml
+*.iws
+.externalToolBuilders/
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# Java
+classes/
+testclasses/
+bin/
+*.class
+
+# hybris
+out/
+gensrc/
+commonwebsrc/
+build-tools/
+c4c-integration/
+platformhome.properties
+
+core-customize/**/build.xml
+core-customize/**/extensioninfo.xsd
+core-customize/**/*-testclasses.xml
+core-customize/**/hmc.xsd
+core-customize/**/items.xsd
+core-customize/**/beans.xsd
+core-customize/**/velocity.log
+addonsrc/
+META-INF
+README
+!README.md
+!.gitignore
+rebel.xml
+eclipsebin
+
+*.classpath
+*.prefs
+
+

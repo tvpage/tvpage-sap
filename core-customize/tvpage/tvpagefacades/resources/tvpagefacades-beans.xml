@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+    <bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+        <property name="tvpageVideoJson" type="String"/>
+    </bean>
+
+    <bean class="com.tvpagefacades.data.TvpageMetaData">
+        <property name="html" type="TvpageMetaHtmlData"/>
+    </bean>
+
+    <bean class="com.tvpagefacades.data.TvpageMetaHtmlData">
+        <property name="head" type="TvpageMetaHtmlHeadData"/>
+    </bean>
+
+    <bean class="com.tvpagefacades.data.TvpageMetaHtmlHeadData">
+        <property name="tags" type="java.util.List&lt;com.tvpagefacades.data.MetaTagData>"/>
+    </bean>
+
+    <bean class="com.tvpagefacades.data.MetaTagData">
+        <property name="tag" type="String"/>
+        <property name="value" type="String"/>
+        <property name="attributes" type="java.util.List&lt;com.tvpagefacades.data.MetaTagAttributeData>"/>
+    </bean>
+
+    <bean class="com.tvpagefacades.data.MetaTagAttributeData">
+        <property name="attribute" type="String"/>
+        <property name="value" type="String"/>
+    </bean>
+</beans>

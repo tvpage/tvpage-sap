@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <itemtypes>
+        <typegroup name="CMS Components">
+            <itemtype code="TvpageStorefrontCmsComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
+                      jaloclass="com.tvpageservices.jalo.cmscomponents.TvpageStorefrontCmsComponent">
+            </itemtype>
+
+            <itemtype code="TvpageVideoCmsComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
+                      jaloclass="com.tvpageservices.jalo.cmscomponents.TvpageVideoCmsComponent">
+                <attributes>
+                    <attribute qualifier="srcUrl" type="java.lang.String">
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="TvpageConversionTrackerComponent" extends="SimpleCMSComponent" autocreate="true"
+                      generate="true"
+                      jaloclass="com.tvpageservices.jalo.cmscomponents.TvpageConversionTrackerComponent">
+            </itemtype>
+        </typegroup>
+
+        <typegroup name="Product ">
+            <itemtype code="Product"
+                      extends="LocalizableItem"
+                      autocreate="false"
+                      generate="false">
+                <attributes>
+                    <attribute qualifier="tvpageVideoJson" type="java.lang.String">
+                        <description>Product Video JSON</description>
+                        <modifiers initial="true"/>
+                        <persistence type="property">
+                            <columntype database="oracle">
+                                <value>CLOB</value>
+                            </columntype>
+                            <columntype database="sap">
+                                <value>NCLOB</value>
+                            </columntype>
+                            <columntype database="mysql">
+                                <value>MEDIUMTEXT</value>
+                            </columntype>
+                            <columntype database="sqlserver">
+                                <value>TEXT</value>
+                            </columntype>
+                            <columntype>
+                                <value>HYBRIS.LONG_STRING</value>
+                            </columntype>
+                        </persistence>
+                    </attribute>
+                    <attribute qualifier="tvpageVideoModifiedTime" type="java.util.Date">
+                        <description>The last modified timestamp for the product video JSON</description>
+                        <persistence type="property"/>
+                        <modifiers optional="true"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+    </itemtypes>
+</items>

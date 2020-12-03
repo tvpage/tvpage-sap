@@ -1,0 +1,3 @@
+UPDATE SyncAttributeDescriptorConfig[batchMode = true]; attributeDescriptor(enclosingType(code), qualifier)[unique = true]; includedInSync
+                                                      ; Product:tvpageVideoJson                                           ; false
+                                                      ; Product:tvpageVideoModifiedTime                                   ; false

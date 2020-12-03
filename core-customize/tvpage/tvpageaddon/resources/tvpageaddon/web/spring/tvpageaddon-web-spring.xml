@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <context:component-scan base-package="com.tvpage.addon"/>
+    <!-- Expose /acceleratoraddon/web/webroot/WEB-INF/messages/base.js.properties  resource bundle as javascript variables -->
+    <bean id="defaultTvpageaddonJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
+        <property name="addOnName" value="tvpageaddon"/>
+    </bean>
+
+    <bean id="defaultTvpageaddonBeforeViewJsPropsHandlerAdaptee" parent="abstractBeforeViewJsPropsHandlerAdaptee"
+          class="de.hybris.platform.addonsupport.interceptors.ExportJsPropertiesBeforeViewHandler">
+        <property name="messageSource" ref="defaultTvpageaddonJavaScriptMessageResourceAccessor"/>
+    </bean>
+
+    <bean id="getTvpageaddonBeforeViewHandler" parent="beforeViewHandlerAdapter">
+        <property name="adaptee">
+            <ref bean="defaultTvpageaddonBeforeViewJsPropsHandlerAdaptee"/>
+        </property>
+    </bean>
+
+    <bean id="TvpageaddonBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList"
+          parent="listMergeDirective">
+        <property name="add" ref="getTvpageaddonBeforeViewHandler"/>
+    </bean>
+
+    <bean id="tvpageAddonComponentRenderer" class="com.tvpage.addon.renderer.TvpageComponentRenderer"
+          parent="addOnJspIncludeCMSComponentRenderer"/>
+
+    <bean id="tvpageStoreFrontCMSComponentRendererMapping"
+          class="de.hybris.platform.addonsupport.renderer.impl.AddOnCMSComponentRendererMapping">
+        <property name="typeCode" value="TvpageStorefrontCmsComponent"/>
+        <property name="renderer" ref="tvpageAddonComponentRenderer"/>
+    </bean>
+    <bean id="tvpageVideoCMSComponentRendererMapping"
+          class="de.hybris.platform.addonsupport.renderer.impl.AddOnCMSComponentRendererMapping">
+        <property name="typeCode" value="TvpageVideoCmsComponent"/>
+        <property name="renderer" ref="tvpageAddonComponentRenderer"/>
+    </bean>
+    <bean id="tvpageConversionTrackerComponentRendererMapping"
+          class="de.hybris.platform.addonsupport.renderer.impl.AddOnCMSComponentRendererMapping">
+        <property name="typeCode" value="TvpageConversionTrackerComponent"/>
+        <property name="renderer" ref="tvpageAddonComponentRenderer"/>
+    </bean>
+
+    <bean id="tvpageBeforeViewHandler" class="com.tvpage.addon.interceptors.beforeview.TvpageBeforeViewHandler"/>
+
+    <bean id="tvpageBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList"
+          parent="listMergeDirective">
+        <property name="add" ref="tvpageBeforeViewHandler"/>
+    </bean>
+
+</beans>

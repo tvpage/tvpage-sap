@@ -1,0 +1,244 @@
+{
+   "commerceSuiteVersion": "2005",
+
+   "extensions":[
+       "adaptivesearchbackoffice" ,
+       "adaptivesearchsolr",
+       "assistedservicestorefront", 
+       "assistedservicewebservices",
+       "b2bcommercebackoffice", 
+       "electronicsstore", 
+       "yacceleratorbackoffice",
+       "yacceleratorinitialdata", 
+       "yacceleratorstorefront",
+       "commerceservicesbackoffice",
+       "ycommercewebservices",
+       "consignmenttrackingbackoffice", 
+       "couponbackoffice", 
+       "couponfacades", 
+       "customersupportbackoffice", 
+       "ticketsystembackoffice", 
+       "inboundservices",
+       "integrationbackoffice", 
+       "integrationbackofficetest", 
+       "integrationmonitoringbackoffice", 
+       "integrationservices",
+       "odata2services" ,
+       "odata2webservices" ,
+       "odata2webservicesfeaturetests" ,
+       "outboundservices",
+       "outboundsync",
+       "outboundsyncbackoffice", 
+       "ordermanagementwebservices" ,
+       "warehousing" ,
+       "warehousingbackoffice", 
+       "warehousingwebservices", 
+       "yacceleratorordermanagement", 
+       "adminapi",
+       "droolsruleengineservices",
+       "rulebuilderbackoffice", 
+       "solrfacetsearchbackoffice", 
+       "solrserver",
+       "cmssmartedit", 
+       "cmssmarteditwebservices", 
+       "smartedit",
+       "smarteditwebservices",
+       "textfieldconfiguratortemplateservices", 
+       "cmsbackoffice", 
+       "cmswebservices", 
+       "previewwebservices", 
+       "permissionswebservices", 
+       "modeltacceleratorservices",
+       "commerceorgaddon",
+       "commerceorgsamplesaddon",
+       "customerticketingaddon",
+       "adaptivesearchsamplesaddon", 
+       "pcmbackofficesamplesaddon",
+       "ordermanagementaddon", 
+       "orderselfserviceaddon",
+       "consignmenttrackingaddon",
+	   "assistedservicestorefront",
+	   "smarteditaddon",
+	   "multicountrysampledataaddon",
+	   "modeltacceleratorservices",
+	   "acceleratorwebservicesaddon",
+	   "tvpageaddon",
+	   "tvpagefacades",
+	   "tvpageservices"
+	   
+   ],
+   "storefrontAddons":[
+	  {
+         "addon":"tvpageaddon",
+         "storefront":"yacceleratorstorefront",
+         "template":"yacceleratorstorefront"
+      }
+	  
+   ],
+  "aspects": [
+	{
+	     "name": "backoffice",
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "backoffice",
+                    "contextPath": "/backoffice"
+                },
+				 {
+                    "name":"odata2webservices",
+                    "contextPath":"/odata2webservices"
+                 }
+            ]
+	},
+	{
+	
+	        "name": "api",
+            "properties": [
+	
+            ],
+            "webapps": [
+			  
+			   
+                {
+                    "name": "ycommercewebservices",
+                    "contextPath": "/rest"
+                },
+                {
+                    "name": "oauth2",
+                    "contextPath": "/authorizationserver"
+                },
+                {
+                    "name": "cmswebservices",
+                    "contextPath": "/cmswebservices"
+                },
+                {
+                    "name": "permissionswebservices",
+                    "contextPath": "/permissionswebservices"
+                },
+                {
+                 "name": "yacceleratorstorefront",
+                 "contextPath": ""
+                 },
+                {
+                 "name": "smartedit",
+                 "contextPath": "/smartedit"
+                 },
+
+                 {
+                 "name": "cmssmartedit",
+                 "contextPath": "/cmssmartedit"
+                 },
+
+                 {
+                 "name": "smarteditwebservices",
+                 "contextPath": "/smarteditwebservices"
+                 },
+
+                 {
+                 "name": "cmssmarteditwebservices",
+                 "contextPath": "/cmssmarteditwebservices"
+                 },
+                
+                 {
+                 "name": "previewwebservices",
+                 "contextPath": "/previewwebservices"
+                 },
+                 {
+                  "name": "mediaweb",
+                  "contextPath": "/medias"
+                 },
+
+                 {
+                  "name": "personalizationsmartedit",
+                  "contextPath": "/personalizationsmartedit"
+                  },
+
+                  {
+                  "name": "personalizationpromotionssmartedit",
+                  "contextPath": "/personalizationpromotionssmartedit"
+                  },
+
+                  {
+                  "name": "personalizationwebservices",
+                  "contextPath": "/personalizationwebservices"
+                  },
+
+                  {
+                  "name": "personalizationsearchsmartedit",
+                  "contextPath": "/personalizationsearchsmartedit"
+                  }
+				  
+                 ]
+        },
+	{
+	 "name": "accstorefront",
+	 "properties": [
+
+			    {
+                    "key": "spring.session.enabled",
+                    "value": "true"
+                },
+
+                {
+                    "key": "spring.session.yacceleratorstorefront.save",
+                    "value":"async"
+                },
+                {
+                    "key": "spring.session.yacceleratorstorefront.cookie.name",
+                    "value": "JSESSIONID"
+                },
+                {
+                    "key": "spring.session.yacceleratorstorefront.cookie.path",
+                    "value": "/"
+                },
+			    {
+                    "key":"storefrontContextRoot",
+                    "value":""
+                }
+				
+				
+			],
+            "webapps": [
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "yacceleratorstorefront",
+                    "contextPath": ""
+                },
+				
+                {
+                    "name": "acceleratorservices",
+                    "contextPath": "/acceleratorservices"
+                },
+			    {
+                   "name":"adaptivesearchwebservices",
+                   "contextPath":"/adaptivesearchwebservices"
+                }
+				
+            ]
+    },
+    {
+      "name": "backgroundProcessing",
+      "properties": [],
+      "webapps": [
+             {
+                 "name": "hac",
+                 "contextPath": ""
+             },
+             {
+                 "name": "mediaweb",
+                 "contextPath": "/medias"
+             }
+            ]
+    }
+   ]    
+ }

@@ -1,0 +1,7 @@
+INSERT_UPDATE ComponentTypeGroups2ComponentType;source(code)[unique=true];target(code)[unique=true]
+;wide;TvpageStorefrontCmsComponent
+;wide;TvpageVideoCmsComponent
+;wide;TvpageConversionTrackerComponent
+;narrow;TvpageStorefrontCmsComponent
+;narrow;TvpageVideoCmsComponent
+;narrow;TvpageConversionTrackerComponent
