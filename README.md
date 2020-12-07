@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # tvpage-sap
 Repository for TVPage-SAP integration
 =======
@@ -45,7 +45,7 @@ Repository for TVPage-SAP integration
   ```
   TvpageSpartacusModule.withConfig({
     tvpage: {
-      accountId: '12345abc'
+      accountId: '<tvpage-client-id>'
     }
   }),
   ```
@@ -63,4 +63,4 @@ Repository for TVPage-SAP integration
         },
       }),
       ```
->>>>>>> 0ad18fe773421c5d8b59de34524070dd8673e037
+
